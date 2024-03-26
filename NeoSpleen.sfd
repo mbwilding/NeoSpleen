@@ -2,7 +2,7 @@ SplineFontDB: 3.2
 FontName: NeoSpleen
 FullName: NeoSpleen
 FamilyName: NeoSpleen
-Weight: Medium
+Weight: Regular
 Copyright: "Copyright (c) 2018-2024, Frederic Cambus, Matthew Wilding"
 Version: "1.0.0"
 ItalicAngle: 0
@@ -22,9 +22,9 @@ OS2Version: 1
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1703523052
-ModificationTime: 1711469518
+ModificationTime: 1711471136
 PfmFamily: 33
-TTFWeight: 500
+TTFWeight: 400
 TTFWidth: 5
 LineGap: 72
 VLineGap: 0
@@ -66,7 +66,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 0 24 18
+WinInfo: 48 24 18
 BeginPrivate: 7
 BlueValues 21 [0 0 448 448 640 640]
 OtherBlues 11 [-192 -192]
@@ -2528,7 +2528,7 @@ StartChar: LATIN
 Encoding: 115 115 84
 Width: 512
 GlyphClass: 1
-Flags: HWO
+Flags: HW
 HStem: 0 64<64 382.155> 192 64<129.845 382.155> 384 64<129.845 448>
 VStem: 64 64<257.845 382.155> 384 64<65.8446 190.155>
 CounterMasks: 1 e0
