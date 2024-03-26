@@ -1,5 +1,5 @@
 # NeoSpleen
 
-A modern twist on the [Spleen](https://github.com/fcambus/spleen) font by [FCambus](https://www.cambus.net)
+A modern font inspired by [Spleen](https://github.com/fcambus/spleen)
 
 ![Demonstration](Demonstration.png)
