@@ -2,7 +2,7 @@
 
 A modern font inspired by [Spleen](https://github.com/fcambus/spleen)
 
-Fonts are in the `Fonts` folder
+You'll find the TTFs in the `Fonts` directory
 
 Recommended font size is 15 (Matches Jetbrains Mono at size 12)
 
