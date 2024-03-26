@@ -11,6 +11,6 @@ rm -f "$output"
 rm -f "$outputNfOut"
 
 fontforge -lang=ff -c "Open(\"$input\"); Generate(\"$output\")"
-fontforge -script Patcher/font-patcher "$output" -c --boxdrawing --removeligs --progressbars
+fontforge -script NerdFontPatcher/font-patcher "$output" -c --boxdrawing --removeligs --progressbars
 
 mv "$outputNfIn" "$outputNfOut"
