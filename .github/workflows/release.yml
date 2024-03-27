@@ -27,7 +27,6 @@ jobs:
         sed -i "s/LangName: [0-9]+ \"\" \"\" \"\" \"\" \"\" \"Version +ACIA-[0-9]+\.[0-9]+\.[0-9]+\"/LangName: ${NEW_VERSION}/g" ${FONT_NAME}.sfd
         sed -i "s/sfntRevision: 0x000[0-9]*0000/sfntRevision: 0x000${MAJOR}0000/g" ${FONT_NAME}.sfd
         echo "version=${NEW_VERSION}" >> ${GITHUB_OUTPUT}
-        cat ${FONT_NAME}.sfd
     - name: Generate Fonts
       run: |
         input="${FONT_NAME}.sfd"
