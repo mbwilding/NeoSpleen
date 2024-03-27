@@ -4,14 +4,14 @@ FullName: NeoSpleen
 FamilyName: NeoSpleen
 Weight: Regular
 Copyright: "Copyright (c) 2018-2024, Frederic Cambus, Matthew Wilding"
-Version: "1.0.0"
+Version: "5.4.3"
 ItalicAngle: 0
 UnderlinePosition: -100
 UnderlineWidth: 40
 Ascent: 832
 Descent: 192
 InvalidEm: 0
-sfntRevision: 0x00010000
+sfntRevision: 0x00050000
 LayerCount: 2
 Layer: 0 0 "Back" 1
 Layer: 1 0 "Fore" 0
@@ -59,7 +59,7 @@ OS2CodePages: 40000093.cdd40000
 OS2UnicodeRanges: 800000af.100078e3.00040000.00000000
 MarkAttachClasses: 1
 DEI: 91125
-LangName: 1033 "" "" "" "" "" "Version +ACIA-1.0.0+ACIA"
+LangName: 1033 "" "" "" "" "" "Version +ACIA-5.4.3+ACIA"
 Encoding: UnicodeBmp
 UnicodeInterp: none
 NameList: AGL For New Fonts
