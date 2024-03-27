@@ -17,12 +17,13 @@ jobs:
     - name: FontForge
       run: sudo apt-get install fontforge
     - name: Increment Version
+      id: version
       run: |
         OLD_VERSION=$(grep -oP 'Version: "\K[^"]+' ${FONT_NAME}.sfd)
         MAJOR_MINOR=$(echo ${OLD_VERSION} | awk -F. '{print $1"."$2}')
         NEW_VERSION="${MAJOR_MINOR}.${GITHUB_RUN_NUMBER}"
         sed -i "s/Version: \"$(echo ${OLD_VERSION})\"/Version: \"$(echo ${NEW_VERSION})\"/g" ${FONT_NAME}.sfd
-        echo "Version: ${NEW_VERSION}"
+        echo "version=${NEW_VERSION}" >> ${GITHUB_OUTPUT}
     - name: Generate Fonts
       run: |
         input="${FONT_NAME}.sfd"
@@ -37,6 +38,6 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v2
       with:
-        files: |
-          NeoSpleen.ttf
-          NeoSpleen-NerdFont.ttf
+        files: *.ttf
+        name: ${{ steps.version.outputs.version }}
+        tag_name: ${{ steps.version.outputs.version }}
