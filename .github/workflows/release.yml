@@ -20,10 +20,14 @@ jobs:
       id: version
       run: |
         OLD_VERSION=$(grep -oP 'Version: "\K[^"]+' ${FONT_NAME}.sfd)
-        MAJOR_MINOR=$(echo ${OLD_VERSION} | awk -F. '{print $1"."$2}')
-        NEW_VERSION="${MAJOR_MINOR}.${GITHUB_RUN_NUMBER}"
+        MAJOR=$(echo ${OLD_VERSION} | awk -F. '{print $1"}')
+        MINOR=$(echo ${OLD_VERSION} | awk -F. '{print $2"}')
+        NEW_VERSION="${MAJOR}.${MINOR}.${GITHUB_RUN_NUMBER}"
         sed -i "s/Version: \"$(echo ${OLD_VERSION})\"/Version: \"$(echo ${NEW_VERSION})\"/g" ${FONT_NAME}.sfd
+        sed -i "s/LangName: [0-9]+ \"\" \"\" \"\" \"\" \"\" \"Version +ACIA-[0-9]+\.[0-9]+\.[0-9]+\"/LangName: ${NEW_VERSION}/g" ${FONT_NAME}.sfd
+        sed -i "s/sfntRevision: 0x000[0-9]*0000/sfntRevision: 0x000${MAJOR}0000/g" ${FONT_NAME}.sfd
         echo "version=${NEW_VERSION}" >> ${GITHUB_OUTPUT}
+        cat ${FONT_NAME}.sfd
     - name: Generate Fonts
       run: |
         input="${FONT_NAME}.sfd"
