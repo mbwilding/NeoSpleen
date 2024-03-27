@@ -14,30 +14,20 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-    - name: Read Version
-      id: read_version
-      run: |
-        VERSION=$(grep -oP 'Version: "\K[^"]+' ${FONT_NAME}.sfd)
-        echo "version=${VERSION}" >> ${GITHUB_ENV}
-    - name: Increment Version
-      id: increment_version
-      run: |
-        OLD_VERSION=${{ steps.read_version.outputs.version }}
-        MAJOR_MINOR=$(echo $OLD_VERSION | awk -F. '{print $1"."$2}')
-        NEW_VERSION="${MAJOR_MINOR}.${GITHUB_RUN_NUMBER}"
-        echo "new_version=${NEW_VERSION}" >> ${GITHUB_ENV}
-    - name: Replace version in file
-      run: |
-        sed -i "s/Version: \"$(echo ${version})\"/Version: \"$(echo ${new_version})\"/g" ${FONT_NAME}.sfd
     - name: FontForge
       run: sudo apt-get install fontforge
-    - name: Generate
+    - name: Increment Version
+      run: |
+        OLD_VERSION=$(grep -oP 'Version: "\K[^"]+' ${FONT_NAME}.sfd)
+        MAJOR_MINOR=$(echo ${OLD_VERSION} | awk -F. '{print $1"."$2}')
+        NEW_VERSION="${MAJOR_MINOR}.${GITHUB_RUN_NUMBER}"
+        sed -i "s/Version: \"$(echo ${OLD_VERSION})\"/Version: \"$(echo ${NEW_VERSION})\"/g" ${FONT_NAME}.sfd
+        echo "Version: ${NEW_VERSION}"
+    - name: Generate Fonts
       run: |
         input="${FONT_NAME}.sfd"
         output="${FONT_NAME}.ttf"
         fontforge -lang=ff -c "Open(\"${input}\"); Generate(\"${output}\")"
-    - name: NerdFont
-      run: |
         wget https://github.com/ryanoasis/nerd-fonts/raw/master/FontPatcher.zip
         unzip FontPatcher.zip -d NerdFontPatcher
         outputIn="${FONT_NAME}NerdFont-Regular.ttf"
