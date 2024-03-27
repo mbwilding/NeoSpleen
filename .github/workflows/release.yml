@@ -35,7 +35,8 @@ jobs:
         fontforge -script NerdFontPatcher/font-patcher ${output} -c --boxdrawing
         mv ${outputIn} ${outputOut}
     - name: Release
-      uses: pipe-cd/actions-gh-release@v2.6.0
+      uses: softprops/action-gh-release@v2
       with:
-          release_file: "*.ttf"
-          token: ${{ secrets.GITHUB_TOKEN }}
+        files: |
+          NeoSpleen.ttf
+          NeoSpleen-NerdFont.ttf
