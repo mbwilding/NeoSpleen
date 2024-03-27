@@ -17,34 +17,33 @@ jobs:
     - name: Read Version
       id: read_version
       run: |
-        VERSION=$(grep -oP 'Version: "\K[^"]+' $FONT_NAME.sfd)
-        echo "version=$VERSION" >> $GITHUB_ENV
+        VERSION=$(grep -oP 'Version: "\K[^"]+' ${FONT_NAME}.sfd)
+        echo "version=${VERSION}" >> ${GITHUB_ENV}
     - name: Increment Version
       id: increment_version
       run: |
         OLD_VERSION=${{ steps.read_version.outputs.version }}
-        MAJOR=$(echo $OLD_VERSION | cut -d'.' -f1)
-        MINOR=$(echo $OLD_VERSION | cut -d'.' -f2)
-        NEW_VERSION="$MAJOR.$MINOR.$GITHUB_RUN_NUMBER"
-        echo "new_version=$NEW_VERSION" >> $GITHUB_ENV
+        MAJOR_MINOR=$(echo $OLD_VERSION | awk -F. '{print $1"."$2}')
+        NEW_VERSION="${MAJOR_MINOR}.${GITHUB_RUN_NUMBER}"
+        echo "new_version=${NEW_VERSION}" >> ${GITHUB_ENV}
     - name: Replace version in file
       run: |
-        sed -i "s/Version: \"$(echo $version)\"/Version: \"$(echo $new_version)\"/g" $FONT_NAME.sfd
+        sed -i "s/Version: \"$(echo ${version})\"/Version: \"$(echo ${new_version})\"/g" ${FONT_NAME}.sfd
     - name: FontForge
       run: sudo apt-get install fontforge
     - name: Generate
       run: |
-        input="$FONT_NAME.sfd"
-        output="$FONT_NAME.ttf"
-        fontforge -lang=ff -c "Open(\"$input\"); Generate(\"$output\")"
+        input="${FONT_NAME}.sfd"
+        output="${FONT_NAME}.ttf"
+        fontforge -lang=ff -c "Open(\"${input}\"); Generate(\"${output}\")"
     - name: NerdFont
       run: |
         wget https://github.com/ryanoasis/nerd-fonts/raw/master/FontPatcher.zip
         unzip FontPatcher.zip -d NerdFontPatcher
         outputIn="${FONT_NAME}NerdFont-Regular.ttf"
         outputOut="${FONT_NAME}-NerdFont.ttf"
-        fontforge -script NerdFontPatcher/font-patcher "$output" -c --boxdrawing
-        mv $outputIn $outputOut
+        fontforge -script NerdFontPatcher/font-patcher ${output} -c --boxdrawing
+        mv ${outputIn} ${outputOut}
     - name: Release
       uses: pipe-cd/actions-gh-release@v2.6.0
       with:
