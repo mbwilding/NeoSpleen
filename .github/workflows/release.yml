@@ -38,6 +38,6 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v2
       with:
-        files: *.ttf
+        files: "*.ttf"
         name: ${{ steps.version.outputs.version }}
         tag_name: ${{ steps.version.outputs.version }}
