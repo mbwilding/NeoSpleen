@@ -25,9 +25,7 @@ jobs:
         OLD_VERSION=${{ steps.read_version.outputs.version }}
         MAJOR=$(echo $OLD_VERSION | cut -d'.' -f1)
         MINOR=$(echo $OLD_VERSION | cut -d'.' -f2)
-        PATCH=$(echo $OLD_VERSION | cut -d'.' -f3)
-        PATCH=$((PATCH + 1))
-        NEW_VERSION="$MAJOR.$MINOR.$PATCH.$GITHUB_RUN_NUMBER"
+        NEW_VERSION="$MAJOR.$MINOR.$GITHUB_RUN_NUMBER"
         echo "new_version=$NEW_VERSION" >> $GITHUB_ENV
     - name: Replace version in file
       run: |
@@ -41,7 +39,7 @@ jobs:
         fontforge -lang=ff -c "Open(\"$input\"); Generate(\"$output\")"
     - name: NerdFont
       run: |
-        wget https://github.com/ryanoasis/nerd-fonts/blob/master/FontPatcher.zip
+        wget https://github.com/ryanoasis/nerd-fonts/raw/master/FontPatcher.zip
         unzip FontPatcher.zip -d NerdFontPatcher
         outputIn="${FONT_NAME}NerdFont-Regular.ttf"
         outputOut="${FONT_NAME}-NerdFont.ttf"
