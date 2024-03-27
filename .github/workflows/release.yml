@@ -1,0 +1,42 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - dev
+
+env:
+  FONT_NAME: NeoSpleen
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: FontForge
+      run: sudo apt-get install fontforge
+    - name: Increment Version
+      run: |
+        OLD_VERSION=$(grep -oP 'Version: "\K[^"]+' ${FONT_NAME}.sfd)
+        MAJOR_MINOR=$(echo ${OLD_VERSION} | awk -F. '{print $1"."$2}')
+        NEW_VERSION="${MAJOR_MINOR}.${GITHUB_RUN_NUMBER}"
+        sed -i "s/Version: \"$(echo ${OLD_VERSION})\"/Version: \"$(echo ${NEW_VERSION})\"/g" ${FONT_NAME}.sfd
+        echo "Version: ${NEW_VERSION}"
+    - name: Generate Fonts
+      run: |
+        input="${FONT_NAME}.sfd"
+        output="${FONT_NAME}.ttf"
+        fontforge -lang=ff -c "Open(\"${input}\"); Generate(\"${output}\")"
+        wget https://github.com/ryanoasis/nerd-fonts/raw/master/FontPatcher.zip
+        unzip FontPatcher.zip -d NerdFontPatcher
+        outputIn="${FONT_NAME}NerdFont-Regular.ttf"
+        outputOut="${FONT_NAME}-NerdFont.ttf"
+        fontforge -script NerdFontPatcher/font-patcher ${output} -c --boxdrawing
+        mv ${outputIn} ${outputOut}
+    - name: Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: |
+          NeoSpleen.ttf
+          NeoSpleen-NerdFont.ttf
