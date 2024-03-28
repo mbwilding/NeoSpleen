@@ -36,7 +36,7 @@ jobs:
         unzip FontPatcher.zip -d NerdFontPatcher
         outputIn="${FONT_NAME}NerdFont-Regular.ttf"
         outputOut="${FONT_NAME}-NerdFont.ttf"
-        fontforge -script NerdFontPatcher/font-patcher ${output} -c --boxdrawing
+        fontforge -script NerdFontPatcher/font-patcher ${output} --complete --boxdrawing --no-progressbars --quiet
         mv ${outputIn} ${outputOut}
     - name: Release
       uses: softprops/action-gh-release@v2
