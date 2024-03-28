@@ -1,1 +1,0 @@
-mkdir -p ~/.local/share/fonts; pushd ~/.local/share/fonts; rm NeoSpleen*.ttf; wget https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen.ttf; wget https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-NerdFont.ttf; popd;
