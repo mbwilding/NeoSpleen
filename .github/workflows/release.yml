@@ -40,7 +40,7 @@ jobs:
         mv ${outputIn} ${outputOut}
     - name: Generate Showcase
       run: |
-        sudo install python3
+        sudo apt-get install python3
         pip3 install Pillow
         python3 generate_image.py
     - name: Release
