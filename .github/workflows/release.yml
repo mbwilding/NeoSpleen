@@ -38,9 +38,16 @@ jobs:
         outputOut="${FONT_NAME}-NerdFont.ttf"
         fontforge -script NerdFontPatcher/font-patcher ${output} --complete --boxdrawing --no-progressbars --quiet
         mv ${outputIn} ${outputOut}
+    - name: Generate Showcase
+      run: |
+        sudo install python3
+        pip3 install Pillow
+        python3 generate_image.py
     - name: Release
       uses: softprops/action-gh-release@v2
       with:
-        files: "*.ttf"
+        files: |
+          *.ttf
+          Showcase.png
         name: ${{ steps.version.outputs.version }}
         tag_name: ${{ steps.version.outputs.version }}
