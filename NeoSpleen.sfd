@@ -22,7 +22,7 @@ OS2Version: 1
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1703523052
-ModificationTime: 1711614584
+ModificationTime: 1711615137
 PfmFamily: 33
 TTFWeight: 400
 TTFWidth: 5
@@ -66,7 +66,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 0 31 18
+WinInfo: 62 31 18
 BeginPrivate: 7
 BlueValues 21 [0 0 448 448 640 640]
 OtherBlues 11 [-192 -192]
@@ -1017,7 +1017,7 @@ EndChar
 
 StartChar: LATIN
 Encoding: 65 65 34
-AltUni2: 000102.ffffffff.0 000100.ffffffff.0
+AltUni2: 000100.ffffffff.0 000102.ffffffff.0
 Width: 512
 GlyphClass: 1
 Flags: W
@@ -1339,7 +1339,6 @@ SplineSet
  302.8359375 576 288.5 561.6640625 288.5 544 c 2
  287.375 80 l 2
 EndSplineSet
-Validated: 1
 EndChar
 
 StartChar: LATIN
@@ -1801,7 +1800,7 @@ EndChar
 
 StartChar: LATIN
 Encoding: 90 90 59
-AltUni2: 000179.ffffffff.0 00017b.ffffffff.0 00017d.ffffffff.0
+AltUni2: 00017d.ffffffff.0 00017b.ffffffff.0 000179.ffffffff.0
 Width: 512
 GlyphClass: 1
 Flags: W
@@ -2206,22 +2205,16 @@ Encoding: 105 105 74
 Width: 512
 GlyphClass: 1
 Flags: W
-HStem: 0 64<289.845 320> 384 64<192 222.155> 544 96<224 288>
-VStem: 224 64<65.8446 382.155 544 640>
+HStem: 0 21G<224 288> 428 20G<224 288> 544 96<224 288>
+VStem: 224 64<0 448 544 640>
 LayerCount: 2
 Fore
 SplineSet
-368 0 m 1
- 304 0 l 2
- 259.83984375 0 224 35.83984375 224 80 c 2
- 224 352 l 2
- 224 369.6640625 209.6640625 384 192 384 c 2
- 144 448 l 1
- 208 448 l 2
- 252.16015625 448 288 412.16015625 288 368 c 2
- 288 96 l 2
- 288 78.3359375 302.3359375 64 320 64 c 2
- 368 0 l 1
+288 448 m 2
+ 288 0 l 2
+ 224 0 l 2
+ 224 448 l 2
+ 288 448 l 2
 224 544 m 1
  224 640 l 1
  288 640 l 1
@@ -2240,20 +2233,20 @@ VStem: 224 64<-126.155 448 544 640>
 LayerCount: 2
 Fore
 SplineSet
-288 -112 m 2
- 288 -156.16015625 252.16015625 -192 208 -192 c 2
+288 -112 m 6
+ 288 -156.16015625 252.16015625 -192 208 -192 c 6
  33 -192 l 5
  33 -128 l 5
- 192 -128 l 2
- 209.6640625 -128 224 -113.6640625 224 -96 c 2
- 224 448 l 1
- 288 448 l 1
- 288 -112 l 2
-224 544 m 1
- 224 640 l 1
- 288 640 l 1
- 288 544 l 1
- 224 544 l 1
+ 192 -128 l 6
+ 209.6640625 -128 224 -113.6640625 224 -96 c 6
+ 224 448 l 5
+ 288 448 l 5
+ 288 -112 l 6
+224 544 m 5
+ 224 640 l 5
+ 288 640 l 5
+ 288 544 l 5
+ 224 544 l 5
 EndSplineSet
 Validated: 1
 EndChar
@@ -2289,22 +2282,20 @@ Encoding: 108 108 77
 Width: 512
 GlyphClass: 1
 Flags: W
-HStem: 0 64<289.845 320> 576 64<192 222.155>
-VStem: 224 64<65.8446 574.155>
+HStem: 0 64<289.845 320>
+VStem: 224 64<65.8446 96>
 LayerCount: 2
 Fore
 SplineSet
-368 0 m 1
- 304 0 l 2
- 259.83984375 0 224 35.83984375 224 80 c 2
- 224 544 l 2
- 224 561.6640625 209.6640625 576 192 576 c 2
- 144 640 l 1
- 208 640 l 2
- 252.16015625 640 288 604.16015625 288 560 c 2
- 288 96 l 2
- 288 78.3359375 302.3359375 64 320 64 c 2
- 368 0 l 1
+320 64 m 2
+ 302.3359375 64 288 78.3359375 288 96 c 2
+ 288 640 l 2
+ 224 640 l 2
+ 224 80 l 2
+ 224 35.83984375 259.83984375 0 304 0 c 2
+ 362 0 l 6
+ 362 64 l 6
+ 320 64 l 2
 EndSplineSet
 EndChar
 
