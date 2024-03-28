@@ -8,10 +8,10 @@ font_size = 294
 font = ImageFont.truetype(font_path, font_size)
 
 draw = ImageDraw.Draw(image)
-text = """abcdefghijklmnopqrstuvwxyz
-ABCDEFGHIJKLMNOPQRSTUVWXYZ
+text = """ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
 0123456789
-+=-~*&#$@%
+_-~=+*&#$@%^
 /<[{(|)}]>\
 `'".,:;!?"""
 
