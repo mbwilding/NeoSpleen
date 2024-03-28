@@ -23,7 +23,7 @@ jobs:
         MAJOR=${OLD_VERSION} | awk -F. '{print $1}')
         MINOR=${OLD_VERSION} | awk -F. '{print $2}')
         NEW_VERSION="${MAJOR}.${MINOR}.${GITHUB_RUN_NUMBER}"
-        sed -i "s/Version: \"[0-9]\+\.[0-9]\+\.[0-9]\+\"/Version: \"${NEW_VERSION}\"/g" ${FONT_NAME}.sfd
+        sed -i "s/Version: \"$(echo ${OLD_VERSION})\"/Version: \"$(echo ${NEW_VERSION})\"/g" ${FONT_NAME}.sfd
         sed -i "s/Version +ACIA-[0-9]\+\.[0-9]\+\.[0-9]\+/Version +ACIA-${NEW_VERSION}/g" ${FONT_NAME}.sfd
         sed -i "s/sfntRevision: 0x000[0-9]*0000/sfntRevision: 0x000${MAJOR}0000/g" ${FONT_NAME}.sfd
         echo "version=${NEW_VERSION}" >> ${GITHUB_OUTPUT}
