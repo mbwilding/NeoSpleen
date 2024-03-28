@@ -42,5 +42,5 @@ Remove-Item -Path "NeoSpleen*.ttf" -Force
 $downloadBase = "https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen"
 Invoke-WebRequest -Uri "${downloadBase}.ttf" -OutFile "NeoSpleen.ttf"
 Invoke-WebRequest -Uri "${downloadBase}-NerdFont.ttf" -OutFile "NeoSpleen-NerdFont.ttf"
-Set-Location -Path $currentLocation
+Pop-Location
 ```
