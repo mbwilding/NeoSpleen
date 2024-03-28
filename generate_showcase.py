@@ -11,8 +11,8 @@ draw = ImageDraw.Draw(image)
 text = """abcdefghijklmnopqrstuvwxyz
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
 0123456789
-+=-~*&#$@%|
-/<[{()}]>\
++=-~*&#$@%
+/<[{(|)}]>\
 `'".,:;!?"""
 
 draw.text((0, 0), text, fill="white", font=font)

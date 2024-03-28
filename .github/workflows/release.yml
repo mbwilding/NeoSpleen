@@ -42,7 +42,7 @@ jobs:
       run: |
         sudo apt-get install python3
         pip3 install Pillow
-        python3 generate_image.py
+        python3 generate_showcase.py
     - name: Release
       uses: softprops/action-gh-release@v2
       with:
