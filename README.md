@@ -6,5 +6,6 @@ You'll find the fonts under the [releases](https://github.com/mbwilding/NeoSplee
 
 Recommended font size is 15 (Equivalent to Jetbrains Mono at size 12)
 
-![Demonstration](Demonstration.png)
+![Showcase](https://github.com/mbwilding/NeoSpleen/releases/latest/download/Showcase.png)
 
+![Demonstration](Demonstration.png)
