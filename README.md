@@ -1,6 +1,6 @@
 # NeoSpleen
 
-A modern font inspired by [Spleen](https://github.com/fcambus/spleen).
+A modern monospaced font inspired by [Spleen](https://github.com/fcambus/spleen).
 
 ## Showcase
 
