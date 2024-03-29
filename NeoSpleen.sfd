@@ -22,7 +22,7 @@ OS2Version: 1
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1703523052
-ModificationTime: 1711692278
+ModificationTime: 1711693029
 PfmFamily: 33
 TTFWeight: 400
 TTFWidth: 5
@@ -66,7 +66,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 62 31 14
+WinInfo: 0 31 14
 BeginPrivate: 7
 BlueValues 21 [0 0 448 448 640 640]
 OtherBlues 11 [-192 -192]
@@ -574,9 +574,9 @@ VStem: 64 64<64 112 544 574.114> 384 64<65.8862 96 432 574.114>
 LayerCount: 2
 Fore
 SplineSet
-64 510 m 2
- 64 560 l 2
- 64 604 100 640 144 640 c 2
+64 510 m 6
+ 64 560 l 6
+ 64 604 100 640 144 640 c 6
  368 640 l 2
  412 640 448 604 448 560 c 2
  448 432 l 2
@@ -593,11 +593,11 @@ SplineSet
  384 432 l 1
  384 544 l 2
  384 562 370 576 352 576 c 2
- 160 576 l 2
- 142 576 128 562 128 544 c 2
- 64 510 l 2
+ 160 576 l 6
+ 142 576 128 562 128 544 c 6
+ 64 510 l 6
 EndSplineSet
-Validated: 2097153
+Validated: 1
 EndChar
 
 StartChar: DIGIT
@@ -705,7 +705,7 @@ SplineSet
  64 130 l 6
  128 96 l 6
 EndSplineSet
-Validated: 2097153
+Validated: 1
 EndChar
 
 StartChar: DIGIT
@@ -1026,7 +1026,7 @@ EndChar
 
 StartChar: LATIN
 Encoding: 65 65 34
-AltUni2: 000102.ffffffff.0 000100.ffffffff.0
+AltUni2: 000100.ffffffff.0 000102.ffffffff.0
 Width: 512
 GlyphClass: 1
 Flags: W
@@ -1348,7 +1348,7 @@ SplineSet
  303 576 288 562 288 544 c 2
  287 80 l 2
 EndSplineSet
-Validated: 2097153
+Validated: 1
 EndChar
 
 StartChar: LATIN
@@ -1374,7 +1374,7 @@ SplineSet
  128 640 l 1
  128 352 l 1
 EndSplineSet
-Validated: 2097153
+Validated: 1
 EndChar
 
 StartChar: LATIN
@@ -1712,7 +1712,7 @@ SplineSet
  221 0 l 1
  61 640 l 5
 EndSplineSet
-Validated: 2097153
+Validated: 1
 EndChar
 
 StartChar: LATIN
@@ -1810,7 +1810,7 @@ EndChar
 
 StartChar: LATIN
 Encoding: 90 90 59
-AltUni2: 000179.ffffffff.0 00017b.ffffffff.0 00017d.ffffffff.0
+AltUni2: 00017d.ffffffff.0 00017b.ffffffff.0 000179.ffffffff.0
 Width: 512
 GlyphClass: 1
 Flags: W
@@ -2215,25 +2215,27 @@ Encoding: 105 105 74
 Width: 512
 GlyphClass: 1
 Flags: W
-HStem: 0 64<252.886 325> 428 20G<187 251> 544 96<187 251>
-VStem: 187 64<65.8862 448 544 640>
+HStem: 0 64<289.886 320> 384 64<192 222.114> 544 96<224 288>
+VStem: 224 64<65.8862 382.114 544 640>
 LayerCount: 2
 Fore
 SplineSet
-251 544 m 2
- 187 544 l 2
- 187 640 l 2
- 251 640 l 2
- 251 544 l 2
-251 448 m 2
- 251 96 l 2
- 251 78 265 64 283 64 c 2
- 325 64 l 2
- 325 0 l 2
- 267 0 l 2
- 223 0 187 36 187 80 c 2
- 187 448 l 2
- 251 448 l 2
+288 96 m 2
+ 288 78 302 64 320 64 c 2
+ 354 0 l 2
+ 304 0 l 2
+ 260 0 224 36 224 80 c 2
+ 224 352 l 6
+ 224 370 210 384 192 384 c 6
+ 158 448 l 6
+ 208 448 l 6
+ 252 448 288 412 288 368 c 6
+ 288 96 l 2
+288 544 m 2
+ 224 544 l 2
+ 224 640 l 2
+ 288 640 l 2
+ 288 544 l 2
 EndSplineSet
 Validated: 2097153
 EndChar
@@ -2297,20 +2299,20 @@ Encoding: 108 108 77
 Width: 512
 GlyphClass: 1
 Flags: W
-HStem: 0 64<252.886 325> 620 20G<187 251>
-VStem: 187 64<65.8862 640>
+HStem: 0 64<227.886 350> 620 20G<162 226>
+VStem: 162 64<65.8862 640>
 LayerCount: 2
 Fore
 SplineSet
-283 64 m 2
- 325 64 l 2
- 325 0 l 2
- 267 0 l 2
- 223 0 187 36 187 80 c 2
- 187 640 l 2
- 251 640 l 2
- 251 96 l 2
- 251 78 265 64 283 64 c 2
+258 64 m 2
+ 350 64 l 6
+ 350 0 l 6
+ 242 0 l 2
+ 198 0 162 36 162 80 c 2
+ 162 640 l 2
+ 226 640 l 2
+ 226 96 l 2
+ 226 78 240 64 258 64 c 2
 EndSplineSet
 Validated: 2097153
 EndChar
@@ -2902,7 +2904,7 @@ SplineSet
  224 0 l 1
  224 436 l 1
 EndSplineSet
-Validated: 2097153
+Validated: 1
 EndChar
 
 StartChar: CENT
@@ -3422,7 +3424,7 @@ VStem: 140.8 38.4<326.4 355.2 614.4 632.468> 332.8 38.4<327.532 345.6 547.2 632.
 LayerCount: 2
 Fore
 Refer: 19 50 S 0.6 0 0 0.6 102.4 288 2
-Validated: 2097153
+Validated: 1
 EndChar
 
 StartChar: SUPERSCRIPT
@@ -3659,7 +3661,7 @@ Fore
 Refer: 16 47 N 1 0 0 1 0 0 2
 Refer: 18 49 N 0.6 0 0 0.6 -31.4 384 2
 Refer: 19 50 N 0.6 0 0 0.6 210.4 -128 2
-Validated: 2097153
+Validated: 1
 EndChar
 
 StartChar: VULGAR
@@ -3745,7 +3747,7 @@ LayerCount: 2
 Fore
 Refer: 95 126 S 1 0 0 1 0 448 2
 Refer: 34 65 N 1 0 0 1 0 0 2
-Validated: 2097153
+Validated: 1
 EndChar
 
 StartChar: LATIN
@@ -3836,7 +3838,7 @@ LayerCount: 2
 Fore
 Refer: 13 44 N 1 0 0 1 32 -102 2
 Refer: 36 67 N 1 0 0 1 0 0 2
-Validated: 2097153
+Validated: 1
 EndChar
 
 StartChar: LATIN
