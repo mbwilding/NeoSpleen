@@ -22,7 +22,7 @@ OS2Version: 1
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1703523052
-ModificationTime: 1711693029
+ModificationTime: 1711701300
 PfmFamily: 33
 TTFWeight: 400
 TTFWidth: 5
@@ -66,7 +66,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 0 31 14
+WinInfo: 38 38 14
 BeginPrivate: 7
 BlueValues 21 [0 0 448 448 640 640]
 OtherBlues 11 [-192 -192]
@@ -1026,7 +1026,7 @@ EndChar
 
 StartChar: LATIN
 Encoding: 65 65 34
-AltUni2: 000100.ffffffff.0 000102.ffffffff.0
+AltUni2: 000102.ffffffff.0 000100.ffffffff.0
 Width: 512
 GlyphClass: 1
 Flags: W
@@ -1810,7 +1810,7 @@ EndChar
 
 StartChar: LATIN
 Encoding: 90 90 59
-AltUni2: 00017d.ffffffff.0 00017b.ffffffff.0 000179.ffffffff.0
+AltUni2: 000179.ffffffff.0 00017b.ffffffff.0 00017d.ffffffff.0
 Width: 512
 GlyphClass: 1
 Flags: W
@@ -2225,19 +2225,19 @@ SplineSet
  354 0 l 2
  304 0 l 2
  260 0 224 36 224 80 c 2
- 224 352 l 6
- 224 370 210 384 192 384 c 6
- 158 448 l 6
- 208 448 l 6
- 252 448 288 412 288 368 c 6
+ 224 352 l 2
+ 224 370 210 384 192 384 c 2
+ 158 448 l 2
+ 208 448 l 2
+ 252 448 288 412 288 368 c 2
  288 96 l 2
-288 544 m 2
- 224 544 l 2
- 224 640 l 2
- 288 640 l 2
- 288 544 l 2
+288 544 m 6
+ 224 544 l 6
+ 224 640 l 6
+ 288 640 l 6
+ 288 544 l 6
 EndSplineSet
-Validated: 2097153
+Validated: 1
 EndChar
 
 StartChar: LATIN
@@ -2265,7 +2265,7 @@ SplineSet
  288 448 l 1
  288 -112 l 2
 EndSplineSet
-Validated: 2097153
+Validated: 1
 EndChar
 
 StartChar: LATIN
@@ -2299,22 +2299,21 @@ Encoding: 108 108 77
 Width: 512
 GlyphClass: 1
 Flags: W
-HStem: 0 64<227.886 350> 620 20G<162 226>
-VStem: 162 64<65.8862 640>
+HStem: 0 64<260.886 383> 620 20G<195 259>
+VStem: 195 64<65.8862 640>
 LayerCount: 2
 Fore
 SplineSet
-258 64 m 2
- 350 64 l 6
- 350 0 l 6
- 242 0 l 2
- 198 0 162 36 162 80 c 2
- 162 640 l 2
- 226 640 l 2
- 226 96 l 2
- 226 78 240 64 258 64 c 2
+291 64 m 2
+ 383 64 l 2
+ 383 0 l 2
+ 275 0 l 2
+ 231 0 195 36 195 80 c 2
+ 195 640 l 2
+ 259 640 l 2
+ 259 96 l 2
+ 259 78 273 64 291 64 c 2
 EndSplineSet
-Validated: 2097153
 EndChar
 
 StartChar: LATIN
