@@ -22,7 +22,7 @@ OS2Version: 1
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1703523052
-ModificationTime: 1712036271
+ModificationTime: 1712036580
 PfmFamily: 33
 TTFWeight: 400
 TTFWidth: 5
@@ -883,11 +883,11 @@ Encoding: 59 59 28
 Width: 512
 GlyphClass: 1
 Flags: W
-HStem: 448 192<219.2 292.8>
-VStem: 219.2 73.5996<448 640>
+HStem: -74 74<155 217.115> 448 192<219.2 292.8>
+VStem: 219 74<1.51184 128> 219.2 73.5996<448 640>
 LayerCount: 2
 Fore
-Refer: 8 39 S 0.707107 -0.707107 0.707107 0.707107 -309.685 -197.647 2
+Refer: 13 44 S 1 0 0 1 0 0 2
 Refer: 15 46 N 1 0 0 1 0 448 2
 EndChar
 
@@ -1034,7 +1034,7 @@ EndChar
 
 StartChar: LATIN
 Encoding: 65 65 34
-AltUni2: 000100.ffffffff.0 000102.ffffffff.0
+AltUni2: 000102.ffffffff.0 000100.ffffffff.0
 Width: 512
 GlyphClass: 1
 Flags: W
@@ -1787,34 +1787,34 @@ StartChar: LATIN
 Encoding: 89 89 58
 Width: 512
 GlyphClass: 1
-Flags: WO
+Flags: W
 HStem: 0 21G<224 288> 620 20G<64 128 384 448>
-VStem: 64 64<368 640> 224 64<0 192> 384 64<368 640>
+VStem: 64 64<464 640> 224 64<0 288> 384 64<464 640>
 CounterMasks: 1 38
 LayerCount: 2
 Fore
 SplineSet
-224 0 m 5
- 224 192 l 1
- 64 352 l 1
+224 0 m 1
+ 224 288 l 1
+ 64 448 l 1
  64 640 l 1
  128 640 l 1
- 128 368 l 1
- 240 256 l 1
- 272 256 l 1
- 384 368 l 1
+ 128 464 l 1
+ 240 352 l 1
+ 272 352 l 1
+ 384 464 l 1
  384 640 l 1
  448 640 l 1
- 448 352 l 1
- 288 192 l 1
- 288 0 l 5
- 224 0 l 5
+ 448 448 l 1
+ 288 288 l 1
+ 288 0 l 1
+ 224 0 l 1
 EndSplineSet
 EndChar
 
 StartChar: LATIN
 Encoding: 90 90 59
-AltUni2: 00017d.ffffffff.0 00017b.ffffffff.0 000179.ffffffff.0
+AltUni2: 000179.ffffffff.0 00017b.ffffffff.0 00017d.ffffffff.0
 Width: 512
 GlyphClass: 1
 Flags: W
@@ -2217,16 +2217,16 @@ StartChar: LATIN
 Encoding: 105 105 74
 Width: 512
 GlyphClass: 1
-Flags: HWO
-HStem: 0 64<288 352> 384 64<160 224> 544 96<224 288>
-VStem: 160 128<384 448> 224 128<0 64> 224 64<64 384 544 640>
+Flags: W
+HStem: 0 64<289.845 352> 384 64<160 222.155> 544 96<224 288>
+VStem: 224 64<65.8446 382.155 544 640>
 LayerCount: 2
 Fore
 SplineSet
 288 96 m 2
  288 78.3359375 302.3359375 64 320 64 c 2
  352 64 l 1
- 352 0 l 1xe8
+ 352 0 l 1
  304 0 l 2
  259.83984375 0 224 35.83984375 224 80 c 2
  224 352 l 2
@@ -2236,11 +2236,11 @@ SplineSet
  208 448 l 2
  252.16015625 448 288 412.16015625 288 368 c 2
  288 96 l 2
-288 544 m 1xe4
+288 544 m 1
  224 544 l 1
  224 640 l 1
  288 640 l 1
- 288 544 l 1xe4
+ 288 544 l 1
 EndSplineSet
 EndChar
 
