@@ -22,7 +22,7 @@ OS2Version: 1
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1703523052
-ModificationTime: 1712036977
+ModificationTime: 1712060396
 PfmFamily: 33
 TTFWeight: 400
 TTFWidth: 5
@@ -66,7 +66,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 0 38 14
+WinInfo: 38 38 14
 BeginPrivate: 7
 BlueValues 21 [0 0 448 448 640 640]
 OtherBlues 11 [-192 -192]
@@ -1033,7 +1033,7 @@ EndChar
 
 StartChar: LATIN
 Encoding: 65 65 34
-AltUni2: 000100.ffffffff.0 000102.ffffffff.0
+AltUni2: 000102.ffffffff.0 000100.ffffffff.0
 Width: 512
 GlyphClass: 1
 Flags: W
@@ -1065,7 +1065,6 @@ SplineSet
  448 0 l 1
  384 0 l 1
 EndSplineSet
-Validated: 1
 EndChar
 
 StartChar: LATIN
@@ -1706,20 +1705,23 @@ Encoding: 86 86 55
 Width: 512
 GlyphClass: 1
 Flags: W
-HStem: 0 21G<216 296> 620 20G<61 135.613 376.387 451>
+HStem: 0 21G<236.206 275.794> 620 20G<64 128 384 448>
+VStem: 64 64<210 640> 384 64<210 640>
 LayerCount: 2
 Fore
 SplineSet
-61 640 m 5
- 131 640 l 5
- 256 98 l 1
- 381 640 l 5
- 451 640 l 5
- 291 0 l 1
- 221 0 l 1
- 61 640 l 5
+256 0 m 1
+ 64 194 l 1
+ 64 640 l 1
+ 128 640 l 1
+ 128 210 l 1
+ 256 84 l 1
+ 384 210 l 1
+ 384 640 l 1
+ 448 640 l 1
+ 448 194 l 1
+ 256 0 l 1
 EndSplineSet
-Validated: 1
 EndChar
 
 StartChar: LATIN
@@ -1793,14 +1795,7 @@ CounterMasks: 1 38
 LayerCount: 2
 Fore
 SplineSet
-224 0 m 1
- 224 288 l 1
- 64 448 l 1
- 64 640 l 1
- 128 640 l 1
- 128 464 l 1
- 240 352 l 1
- 272 352 l 1
+256 337 m 5
  384 464 l 1
  384 640 l 1
  448 640 l 1
@@ -1808,12 +1803,18 @@ SplineSet
  288 288 l 1
  288 0 l 1
  224 0 l 1
+ 224 288 l 1
+ 64 448 l 1
+ 64 640 l 1
+ 128 640 l 1
+ 128 464 l 1
+ 256 337 l 5
 EndSplineSet
 EndChar
 
 StartChar: LATIN
 Encoding: 90 90 59
-AltUni2: 00017d.ffffffff.0 00017b.ffffffff.0 000179.ffffffff.0
+AltUni2: 000179.ffffffff.0 00017b.ffffffff.0 00017d.ffffffff.0
 Width: 512
 GlyphClass: 1
 Flags: W
@@ -2604,24 +2605,22 @@ Encoding: 118 118 87
 Width: 512
 GlyphClass: 1
 Flags: W
-HStem: 0 64<240 272> 428 20G<64 128 384 448>
-VStem: 64 64<176 448> 384 64<176 448>
+HStem: 0 21G<236.206 275.794> 428 20G<64 128 384 448>
+VStem: 64 64<210 448> 384 64<210 448>
 LayerCount: 2
 Fore
 SplineSet
-288 0 m 1
- 224 0 l 1
- 64 160 l 1
+256 0 m 1
+ 64 194 l 1
  64 448 l 1
  128 448 l 1
- 128 176 l 1
- 240 64 l 1
- 272 64 l 1
- 384 176 l 1
+ 128 210 l 1
+ 256 84 l 1
+ 384 210 l 1
  384 448 l 1
  448 448 l 1
- 448 160 l 1
- 288 0 l 1
+ 448 194 l 1
+ 256 0 l 1
 EndSplineSet
 EndChar
 
@@ -3116,7 +3115,7 @@ Width: 512
 GlyphClass: 1
 Flags: W
 HStem: -64 96<143.613 224> -64 64<224 350.155> 160 64<161.845 336.387> 416 64<175.613 350.155> 608 96<288 368.387> 640 64<161.845 288>
-VStem: 96 64<225.845 414.269 495.731 638.155> 352 64<1.84456 144.269 225.731 414.155>
+VStem: 96 64<225.845 414.269 495.731 638.155> 288 96<608 640> 352 64<1.84456 144.269 225.731 414.155>
 LayerCount: 2
 Fore
 SplineSet
@@ -3139,23 +3138,23 @@ SplineSet
  160 508.671875 188.671875 480 224 480 c 1
  336 480 l 1
  380.16015625 480 416 444.16015625 416 400 c 1
- 416 240 l 1
+ 416 240 l 1x3a80
  416 213.50390625 401.6640625 192 384 192 c 1
  368 192 l 1
  368 160 l 1
- 384 160 l 1
+ 384 160 l 1x3b
  401.6640625 160 416 138.49609375 416 112 c 1
  416 16 l 1
- 416 -28.16015625 380.16015625 -64 336 -64 c 1x7b
- 192 -64 l 1xb3
- 156.671875 -64 128 -35.328125 128 0 c 1x73
+ 416 -28.16015625 380.16015625 -64 336 -64 c 1x7a80
+ 192 -64 l 1xb280
+ 156.671875 -64 128 -35.328125 128 0 c 1x7280
  128 32 l 1
- 208 32 l 1xb3
+ 208 32 l 1xb280
  216.83203125 32 224 24.83203125 224 16 c 1
  224 0 l 1
- 320 0 l 1x73
+ 320 0 l 1x7280
  337.6640625 0 352 14.3359375 352 32 c 1
- 352 96 l 1
+ 352 96 l 1xb280
  352 131.328125 323.328125 160 288 160 c 1
  176 160 l 1
  131.83984375 160 96 195.83984375 96 240 c 1
@@ -3164,7 +3163,7 @@ SplineSet
 192 224 m 1
  320 224 l 1
  337.6640625 224 352 238.3359375 352 256 c 1
- 352 384 l 1
+ 352 384 l 1x3280
  352 401.6640625 337.6640625 416 320 416 c 1
  192 416 l 1
  174.3359375 416 160 401.6640625 160 384 c 1
@@ -3438,7 +3437,6 @@ GlyphClass: 1
 Flags: W
 HStem: 288 38.4<140.8 331.668> 460.8 38.4<198.4 331.954> 633.6 38.4<140.8 331.668>
 VStem: 332.8 38.4<327.532 459.954 500.046 632.468>
-CounterMasks: 1 e0
 LayerCount: 2
 Fore
 Refer: 20 51 S 0.6 0 0 0.6 102.4 288 2
@@ -3708,7 +3706,6 @@ LayerCount: 2
 Fore
 Refer: 8 39 S 0.707107 0.707107 -0.707107 0.707107 459.647 172.315 2
 Refer: 34 65 N 1 0 0 1 0 0 2
-Validated: 1
 EndChar
 
 StartChar: LATIN
@@ -3723,7 +3720,6 @@ LayerCount: 2
 Fore
 Refer: 117 180 N 1 0 0 1 0 194 2
 Refer: 34 65 N 1 0 0 1 0 0 2
-Validated: 1
 EndChar
 
 StartChar: LATIN
@@ -3737,7 +3733,6 @@ LayerCount: 2
 Fore
 Refer: 63 94 S 0.8 0 0 0.8 51.2 357.8 2
 Refer: 34 65 N 1 0 0 1 0 0 2
-Validated: 1
 EndChar
 
 StartChar: LATIN
@@ -3751,7 +3746,6 @@ LayerCount: 2
 Fore
 Refer: 95 126 S 1 0 0 1 0 448 2
 Refer: 34 65 N 1 0 0 1 0 0 2
-Validated: 1
 EndChar
 
 StartChar: LATIN
@@ -3779,7 +3773,6 @@ LayerCount: 2
 Fore
 Refer: 113 176 N 0.80465 0 0 0.80465 50.0096 314.227 2
 Refer: 34 65 N 1 0 0 1 0 0 2
-Validated: 1
 EndChar
 
 StartChar: LATIN
