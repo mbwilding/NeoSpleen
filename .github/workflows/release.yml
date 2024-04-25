@@ -29,7 +29,9 @@ jobs:
         echo "version=${NEW_VERSION}" >> ${GITHUB_OUTPUT}
     - name: Generate Font
       run: |
-        fontforge -lang=ff -c "Open(\"${FONT_NAME}.sfd\"); Generate(\"${FONT_NAME.ttf}\")"
+        input="${FONT_NAME}.sfd"
+        output="${FONT_NAME}.ttf"
+        fontforge -lang=ff -c "Open(\"${input}\"); Generate(\"${output}\")"
     - name: Generate Nerd Font
       run: |
         wget https://github.com/ryanoasis/nerd-fonts/raw/master/FontPatcher.zip
