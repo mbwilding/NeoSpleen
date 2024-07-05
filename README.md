@@ -12,6 +12,13 @@ A modern monospaced font inspired by [Spleen](https://github.com/fcambus/spleen)
 
 ### Linux
 
+#### Arch (AUR)
+
+- [ttf-neospleen](https://aur.archlinux.org/packages/ttf-neospleen)
+- [ttf-neospleen-nerd-font](https://aur.archlinux.org/packages/ttf-neospleen-nerd-font)
+
+#### Generic
+
 ```bash
 font_path="~/.local/share/fonts"
 mkdir -p ${font_path}
