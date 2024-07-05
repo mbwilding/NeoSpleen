@@ -15,7 +15,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
     - name: FontForge
-      run: sudo apt-get install fontforge
+      run: sudo apt-get install fontforge libwoff-dev
     - name: Increment Version
       id: version
       run: |
@@ -29,10 +29,13 @@ jobs:
         echo "version=${NEW_VERSION}" >> ${GITHUB_OUTPUT}
     - name: Generate Font
       run: |
-        input="${FONT_NAME}.sfd"
-        output="${FONT_NAME}.ttf"
-        fontforge -lang=ff -c "Open(\"${input}\"); Generate(\"${output}\")"
-    - name: Generate Nerd Font
+        sfd="${FONT_NAME}.sfd"
+        formats=("ttf" "woff2")
+        for format in "${formats[@]}"; do
+            output="${FONT_NAME}.${format}"
+            fontforge -lang=ff -c "Open(\"${sfd}\"); Generate(\"${output}\")"
+        done
+    - name: Generate Nerd Font TTF
       run: |
         wget https://github.com/ryanoasis/nerd-fonts/raw/master/FontPatcher.zip
         unzip FontPatcher.zip -d NerdFontPatcher
@@ -48,6 +51,7 @@ jobs:
       with:
         files: |
           *.ttf
+          *.woff2
           Showcase-*.png
         name: ${{ steps.version.outputs.version }}
         tag_name: ${{ steps.version.outputs.version }}
