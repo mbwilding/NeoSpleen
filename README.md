@@ -30,6 +30,6 @@ Download the font you want, double click it, and click install.
 
 [NeoSpleen TTF](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen.ttf)
 
-[NeoSpleen TTF NerdFont](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-NerdFont.ttf)
+[NeoSpleen NerdFont TTF](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-NerdFont.ttf)
 
 [NeoSpleen WOFF2](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen.woff2)
