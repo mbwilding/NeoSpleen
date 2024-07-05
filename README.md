@@ -4,9 +4,9 @@ A modern monospaced font inspired by [Spleen](https://github.com/fcambus/spleen)
 
 ## Showcase
 
-![Showcase White-on-Black](https://github.com/mbwilding/NeoSpleen/releases/latest/download/Showcase-WoB.png) 
+![Showcase White-on-Black](https://github.com/mbwilding/NeoSpleen/releases/latest/download/Showcase-WoB.png)
 
-![Showcase Black-on-White](https://github.com/mbwilding/NeoSpleen/releases/latest/download/Showcase-BoW.png) 
+![Showcase Black-on-White](https://github.com/mbwilding/NeoSpleen/releases/latest/download/Showcase-BoW.png)
 
 ## Install
 
@@ -28,6 +28,8 @@ fc-cache -f
 
 Download the font you want, double click it, and click install.
 
-[NeoSpleen](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen.ttf)
+[NeoSpleen TTF](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen.ttf)
 
-[NeoSpleen-NerdFont](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-NerdFont.ttf) 
+[NeoSpleen TTF NerdFont](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-NerdFont.ttf)
+
+[NeoSpleen WOFF2](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen.woff2)
