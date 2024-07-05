@@ -10,6 +10,14 @@ A modern monospaced font inspired by [Spleen](https://github.com/fcambus/spleen)
 
 ## Install
 
+### Mac
+
+```bash
+brew tap mbwilding/neospleen
+brew install neospleen
+brew install neospleen-nerd-font
+```
+
 ### Linux
 
 #### Arch (AUR)
