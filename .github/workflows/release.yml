@@ -2,8 +2,6 @@ name: Release
 
 on:
   push:
-    branches:
-      - main
 
 env:
   FONT_NAME: NeoSpleen
@@ -14,8 +12,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-    - name: FontForge
-      run: sudo apt-get install fontforge libwoff-dev
+    - name: Install Dependencies
+      run: sudo apt-get install python3 fontforge libwoff-dev
     - name: Increment Version
       id: version
       run: |
@@ -27,7 +25,7 @@ jobs:
         sed -i "s/Version +ACIA-[0-9]\+\.[0-9]\+\.[0-9]\+/Version +ACIA-${NEW_VERSION}/g" ${FONT_NAME}.sfd
         sed -i "s/sfntRevision: 0x000[0-9]*0000/sfntRevision: 0x000${MAJOR}0000/g" ${FONT_NAME}.sfd
         echo "version=${NEW_VERSION}" >> ${GITHUB_OUTPUT}
-    - name: Generate Fonts
+    - name: Generate Base Font
       run: |
         sfd="${FONT_NAME}.sfd"
         formats=("ttf" "woff2")
@@ -35,18 +33,22 @@ jobs:
             output="${FONT_NAME}.${format}"
             fontforge -lang=ff -c "Open(\"${sfd}\"); Generate(\"${output}\")"
         done
-    - name: Generate Nerd Font
-      run: |
-        wget https://github.com/ryanoasis/nerd-fonts/raw/master/FontPatcher.zip
-        unzip FontPatcher.zip -d NerdFontPatcher
-        fontforge -script NerdFontPatcher/font-patcher ${FONT_NAME}.ttf --complete --boxdrawing --no-progressbars --quiet
-        mv ${FONT_NAME}NerdFont-Regular.ttf ${FONT_NAME}-NerdFont.ttf
-    - name: Generate Showcase
-      run: |
-        sudo apt-get install python3
-        pip3 install Pillow
-        python3 generate_showcase.py
+    - name: Generate Weight Fonts
+      run: fontforge -lang=py -script generate_font_weights.py
+    - name: List Fonts
+      run: ls *.ttf *.woff2
+    # - name: Generate Nerd Fonts
+    #   run: |
+    #     wget https://github.com/ryanoasis/nerd-fonts/raw/master/FontPatcher.zip
+    #     unzip FontPatcher.zip -d NerdFontPatcher
+    #     fontforge -script NerdFontPatcher/font-patcher ${FONT_NAME}.ttf --complete --boxdrawing --no-progressbars --quiet
+    #     mv ${FONT_NAME}NerdFont-Regular.ttf ${FONT_NAME}-NerdFont.ttf
+    # - name: Generate Showcase
+    #   run: |
+    #     pip3 install Pillow
+    #     python3 generate_showcase.py
     - name: Release
+      if: github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@v2
       with:
         files: |
