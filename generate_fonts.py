@@ -28,7 +28,6 @@ def generate_font(font_type: str, font_weight: int, ext: str) -> None:
         font.autoHint()
         font.autoInstr()
 
-    # ----- Generate and finalize font -----
     font.generate(output_file)
     print(f"Generated {output_file}:")
     print("  Type:", font_type)
@@ -39,7 +38,7 @@ def generate_font(font_type: str, font_weight: int, ext: str) -> None:
 def main():
     formats = sys.argv[1:]
     if not formats:
-        formats = ["ttf"]
+        formats = ["ttf", "woff2"]
 
     font_weights = [
         # ("Thin", 100),

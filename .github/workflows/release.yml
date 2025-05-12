@@ -26,15 +26,17 @@ jobs:
         sed -i "s/sfntRevision: 0x000[0-9]*0000/sfntRevision: 0x000${MAJOR}0000/g" ${FONT_NAME}.sfd
         echo "version=${NEW_VERSION}" >> ${GITHUB_OUTPUT}
     - name: Generate Fonts
-      run: |
-        formats=("ttf" "woff2")
-        fontforge -lang=py -script generate_fonts.py "${formats[@]}"
+      run: ./generate_fonts.py
     - name: Generate Nerd Fonts
       run: ./generate-nerd-fonts.py
-    # - name: Generate Showcase
-    #   run: |
-    #     pip3 install Pillow
-    #     ./generate_showcases.py
+    - name: Generate Showcase
+      run: |
+        pip3 install Pillow
+        ./generate_showcases.py
+    - name: List Fonts
+      run: ls fonts
+    - name: List Showcases
+      run: ls renders
     - name: Release
       if: github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@v2
