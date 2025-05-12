@@ -34,6 +34,5 @@ for ttf_file in ttf_files:
     wob_path = os.path.join("renders", f"{base_name}-WoB.png")
     bow_path = os.path.join("renders", f"{base_name}-BoW.png")
 
-    # TODO: Re-enable
-    # create_image("white", "black", wob_path, font)
+    create_image("white", "black", wob_path, font_ttf)
     create_image("black", "white", bow_path, font_ttf)
