@@ -1,4 +1,8 @@
-NeoSpleen.ttf
-NeoSpleen-NerdFont.ttf
-Showcase.png
 NerdFontPatcher/
+fonts/
+renders/
+.mypy_cache/
+FontPatcher.zip
+**.ttf
+**.woff2
+.DS_Store

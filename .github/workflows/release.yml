@@ -2,8 +2,6 @@ name: Release
 
 on:
   push:
-    branches:
-      - main
 
 env:
   FONT_NAME: NeoSpleen
@@ -14,8 +12,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-    - name: FontForge
-      run: sudo apt-get install fontforge libwoff-dev
+    - name: Install Dependencies
+      run: sudo apt-get install python3 fontforge python3-fontforge libwoff-dev
     - name: Increment Version
       id: version
       run: |
@@ -28,30 +26,32 @@ jobs:
         sed -i "s/sfntRevision: 0x000[0-9]*0000/sfntRevision: 0x000${MAJOR}0000/g" ${FONT_NAME}.sfd
         echo "version=${NEW_VERSION}" >> ${GITHUB_OUTPUT}
     - name: Generate Fonts
+      run: ./generate_fonts.py
+    - name: Generate Nerd Fonts
+      run: ./generate_nerd_fonts.py
+    - name: List Fonts
+      run: ls fonts
+    - name: Generate Showcases
       run: |
-        sfd="${FONT_NAME}.sfd"
-        formats=("ttf" "woff2")
-        for format in "${formats[@]}"; do
-            output="${FONT_NAME}.${format}"
-            fontforge -lang=ff -c "Open(\"${sfd}\"); Generate(\"${output}\")"
-        done
-    - name: Generate Nerd Font
-      run: |
-        wget https://github.com/ryanoasis/nerd-fonts/raw/master/FontPatcher.zip
-        unzip FontPatcher.zip -d NerdFontPatcher
-        fontforge -script NerdFontPatcher/font-patcher ${FONT_NAME}.ttf --complete --boxdrawing --no-progressbars --quiet
-        mv ${FONT_NAME}NerdFont-Regular.ttf ${FONT_NAME}-NerdFont.ttf
-    - name: Generate Showcase
-      run: |
-        sudo apt-get install python3
         pip3 install Pillow
-        python3 generate_showcase.py
+        ./generate_showcases.py
+    - name: List Showcases
+      run: ls renders
+    - name: Zip
+      run: |
+        cd fonts
+        echo "Zipping Standard"
+        find . -type f -name "*.ttf" ! -name "*NerdFont*" | zip "NeoSpleen-TTF.zip" -@
+        echo "Zipping Nerd Font"
+        find . -type f -name "*NerdFont*.ttf" | zip "NeoSpleenNerdFont-TTF.zip" -@
     - name: Release
+      if: github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@v2
       with:
         files: |
-          *.ttf
-          *.woff2
-          Showcase-*.png
+          fonts/*.ttf
+          fonts/*.woff2
+          fonts/*.zip
+          renders/*.png
         name: ${{ steps.version.outputs.version }}
         tag_name: ${{ steps.version.outputs.version }}

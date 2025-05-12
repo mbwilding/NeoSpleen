@@ -4,9 +4,23 @@ A modern monospaced font inspired by [Spleen](https://github.com/fcambus/spleen)
 
 ## Showcase
 
-![Showcase White-on-Black](https://github.com/mbwilding/NeoSpleen/releases/latest/download/Showcase-WoB.png)
+### Regular
 
-![Showcase Black-on-White](https://github.com/mbwilding/NeoSpleen/releases/latest/download/Showcase-BoW.png)
+![Regular White-on-Black](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Regular-WoB.png)
+
+![Regular Black-on-White](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Regular-BoW.png)
+
+### Medium
+
+![Medium White-on-Black](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Medium-WoB.png)
+
+![Medium Black-on-White](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Medium-BoW.png)
+
+### Bold
+
+![Bold White-on-Black](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Bold-WoB.png)
+
+![Bold Black-on-White](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Bold-BoW.png)
 
 ## Install
 
@@ -29,11 +43,3 @@ brew install --cask font-neospleen-nerd-font
 yay -S ttf-neospleen
 yay -S ttf-neospleen-nerd-font
 ```
-
-### Manual
-
-[NeoSpleen TTF](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen.ttf)
-
-[NeoSpleen NerdFont TTF](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-NerdFont.ttf)
-
-[NeoSpleen WOFF2](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen.woff2)
