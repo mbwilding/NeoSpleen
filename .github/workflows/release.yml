@@ -5,7 +5,6 @@ on:
 
 env:
   FONT_NAME: NeoSpleen
-  FONT_DIR: fonts
 
 jobs:
   release:
@@ -30,16 +29,12 @@ jobs:
       run: |
         formats=("ttf" "woff2")
         fontforge -lang=py -script generate_fonts.py "${formats[@]}"
-    # - name: Generate Nerd Fonts
-    #   run: |
-    #     wget https://github.com/ryanoasis/nerd-fonts/raw/master/FontPatcher.zip
-    #     unzip FontPatcher.zip -d NerdFontPatcher
-    #     fontforge -script NerdFontPatcher/font-patcher ${FONT_NAME}.ttf --complete --boxdrawing --no-progressbars --quiet
-    #     mv ${FONT_NAME}NerdFont-Regular.ttf ${FONT_NAME}-NerdFont.ttf
+    - name: Generate Nerd Fonts
+      run: ./generate-nerd-fonts.py
     # - name: Generate Showcase
     #   run: |
     #     pip3 install Pillow
-    #     python3 generate_showcase.py
+    #     ./generate_showcase.py
     - name: Release
       if: github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@v2
@@ -47,6 +42,6 @@ jobs:
         files: |
           *.ttf
           *.woff2
-          Showcase-*.png
+          renders/*.png
         name: ${{ steps.version.outputs.version }}
         tag_name: ${{ steps.version.outputs.version }}

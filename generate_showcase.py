@@ -31,7 +31,7 @@ def create_image(text_color, background_color, file_path):
     image = Image.new("RGB", (WIDTH, HEIGHT), background_color)
     draw = ImageDraw.Draw(image)
     draw.text((0, 0), TEXT, fill=text_color, font=FONT)
-    image.save("fonts/Showcase-" + file_path)
+    image.save("renders/Showcase-" + file_path)
 
 
 create_image("white", "black", "WoB.png")
