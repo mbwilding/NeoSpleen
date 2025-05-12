@@ -29,12 +29,12 @@ jobs:
       run: ./generate_fonts.py
     - name: Generate Nerd Fonts
       run: ./generate_nerd_fonts.py
-    - name: Generate Showcase
+    - name: List Fonts
+      run: ls fonts
+    - name: Generate Showcases
       run: |
         pip3 install Pillow
         ./generate_showcases.py
-    - name: List Fonts
-      run: ls fonts
     - name: List Showcases
       run: ls renders
     - name: Zip
