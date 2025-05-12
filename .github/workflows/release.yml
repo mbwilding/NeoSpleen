@@ -30,7 +30,7 @@ jobs:
         sfd="${FONT_NAME}.sfd"
         formats=("ttf" "woff2")
         for format in "${formats[@]}"; do
-            output="${FONT_NAME}.${format}"
+            output="${FONT_NAME}-Regular.${format}"
             fontforge -lang=ff -c "Open(\"${sfd}\"); Generate(\"${output}\")"
         done
     - name: Generate Weight Fonts
