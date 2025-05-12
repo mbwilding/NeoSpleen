@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 This module provides a function to create and save an image with custom text,
 and background colors using the Pillow library.
@@ -29,7 +31,7 @@ def create_image(text_color, background_color, file_path):
     image = Image.new("RGB", (WIDTH, HEIGHT), background_color)
     draw = ImageDraw.Draw(image)
     draw.text((0, 0), TEXT, fill=text_color, font=FONT)
-    image.save("Showcase-" + file_path)
+    image.save("fonts/Showcase-" + file_path)
 
 
 create_image("white", "black", "WoB.png")
