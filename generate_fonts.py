@@ -6,6 +6,7 @@ import fontforge
 def generate_font(font_type: str, font_weight: int, ext: str) -> None:
     font = fontforge.open("NeoSpleen.sfd")
     font.selection.all()
+
     font.fontname = f"NeoSpleen-{font_type}"
     font.fullname = f"NeoSpleen {font_type}"
     font.weight = font_type
@@ -17,6 +18,17 @@ def generate_font(font_type: str, font_weight: int, ext: str) -> None:
     if font_scale != 1.0:
         font.changeWeight(font_scale, "LCG", 0, 0, "squish")
 
+    font.removeOverlap()
+    font.correctDirection()
+
+    for glyph in font.glyphs():
+        glyph.round()
+
+    if ext.lower() in ("ttf", "ttc"):
+        font.autoHint()
+        font.autoInstr()
+
+    # ----- Generate and finalize font -----
     font.generate(output_file)
     print(f"Generated {output_file}:")
     print("  Type:", font_type)
