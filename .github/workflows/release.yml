@@ -13,7 +13,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
     - name: Install Dependencies
-      run: sudo apt-get install python3 fontforge libwoff-dev
+      run: sudo apt-get install python3 fontforge python3-fontforge libwoff-dev
     - name: Increment Version
       id: version
       run: |
