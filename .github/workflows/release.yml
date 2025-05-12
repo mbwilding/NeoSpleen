@@ -40,7 +40,9 @@ jobs:
     - name: Zip
       run: |
         cd fonts
+        echo "Zipping Standard"
         find . -type f -name "*.ttf" ! -name "*NerdFont*" | zip "NeoSpleen-TTF.zip" -@
+        echo "Zipping Nerd Font"
         find . -type f -name "*NerdFont*.ttf" | zip "NeoSpleenNerdFont-TTF.zip" -@
     - name: Release
       if: github.ref == 'refs/heads/main'
