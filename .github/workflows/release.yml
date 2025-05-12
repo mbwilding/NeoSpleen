@@ -34,7 +34,7 @@ jobs:
     # - name: Generate Showcase
     #   run: |
     #     pip3 install Pillow
-    #     ./generate_showcase.py
+    #     ./generate_showcases.py
     - name: Release
       if: github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@v2
