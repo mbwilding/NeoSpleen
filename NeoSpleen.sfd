@@ -1132,7 +1132,6 @@ EndChar
 
 StartChar: LATIN
 Encoding: 65 65 36
-AltUni2: 000100.ffffffff.0 000102.ffffffff.0 000100.ffffffff.0 000102.ffffffff.0
 Width: 512
 GlyphClass: 1
 Flags: W
@@ -2005,7 +2004,6 @@ EndChar
 
 StartChar: LATIN
 Encoding: 90 90 61
-AltUni2: 000179.ffffffff.0 00017b.ffffffff.0 00017d.ffffffff.0 000179.ffffffff.0 00017b.ffffffff.0 00017d.ffffffff.0
 Width: 512
 GlyphClass: 1
 Flags: W
@@ -2910,7 +2908,6 @@ EndChar
 
 StartChar: LATIN
 Encoding: 119 119 90
-AltUni2: 000175.ffffffff.0 000175.ffffffff.0
 Width: 512
 GlyphClass: 1
 Flags: W
