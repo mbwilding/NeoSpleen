@@ -15,7 +15,9 @@ jobs:
     - name: Install Dependencies
       run: sudo apt-get install python3 fontforge python3-fontforge libwoff-dev
     - name: REMOVE
-      run: fontforge NeoSpleen.sfd
+      run: |
+        fontforge -lang=ff -c 'Open("NeoSpleen.sfd"); Generate("NeoSpleen.ttf");'
+        exit 1
     - name: Increment Version
       id: version
       run: |
