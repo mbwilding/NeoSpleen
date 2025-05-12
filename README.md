@@ -40,6 +40,6 @@ brew install --cask font-neospleen-nerd-font
 - [ttf-neospleen-nerd-font](https://aur.archlinux.org/packages/ttf-neospleen-nerd-font)
 
 ```bash
-yay -S ttf-neospleen
-yay -S ttf-neospleen-nerd-font
+paru -S ttf-neospleen
+paru -S ttf-neospleen-nerd-font
 ```
