@@ -14,6 +14,8 @@ jobs:
       uses: actions/checkout@v4
     - name: Install Dependencies
       run: sudo apt-get install python3 fontforge python3-fontforge libwoff-dev
+    - name: REMOVE
+      run: fontforge NeoSpleen.sfd
     - name: Increment Version
       id: version
       run: |

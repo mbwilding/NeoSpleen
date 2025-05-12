@@ -5,6 +5,7 @@ import fontforge
 
 def generate_font(font_type: str, font_weight: int, ext: str) -> None:
     font = fontforge.open("NeoSpleen.sfd")
+
     font.selection.all()
 
     font.fontname = f"NeoSpleen-{font_type}"
