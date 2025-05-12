@@ -5,7 +5,7 @@ set -e
 # Generate Fonts
 FONT_NAME="NeoSpleen"
 sfd="${FONT_NAME}.sfd"
-formats=("ttf")
+formats=("ttf") # TODO: Add "woff2"
 for format in "${formats[@]}"; do
     output="${FONT_NAME}-Regular.${format}"
     fontforge -lang=ff -c "Open(\"${sfd}\"); Generate(\"${output}\")"
