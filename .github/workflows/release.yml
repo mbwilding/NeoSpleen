@@ -37,13 +37,19 @@ jobs:
       run: ls fonts
     - name: List Showcases
       run: ls renders
+    - name: Zip
+      run: |
+        cd fonts
+        find . -type f -name "*.ttf" ! -name "*NerdFont*" | zip "NeoSpleen-TTF.zip" -@
+        find . -type f -name "*NerdFont*.ttf" | zip "NeoSpleenNerdFont-TTF.zip" -@
     - name: Release
       if: github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@v2
       with:
         files: |
-          *.ttf
-          *.woff2
+          fonts/*.ttf
+          fonts/*.woff2
+          fonts/*.zip
           renders/*.png
         name: ${{ steps.version.outputs.version }}
         tag_name: ${{ steps.version.outputs.version }}
