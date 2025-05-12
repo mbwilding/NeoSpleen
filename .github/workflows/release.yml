@@ -26,18 +26,10 @@ jobs:
         sed -i "s/Version +ACIA-[0-9]\+\.[0-9]\+\.[0-9]\+/Version +ACIA-${NEW_VERSION}/g" ${FONT_NAME}.sfd
         sed -i "s/sfntRevision: 0x000[0-9]*0000/sfntRevision: 0x000${MAJOR}0000/g" ${FONT_NAME}.sfd
         echo "version=${NEW_VERSION}" >> ${GITHUB_OUTPUT}
-    - name: Generate Base Font
+    - name: Generate Fonts
       run: |
-        sfd="${FONT_NAME}.sfd"
         formats=("ttf" "woff2")
-        for format in "${formats[@]}"; do
-            output="${FONT_DIR}/${FONT_NAME}-Regular.${format}"
-            fontforge -lang=ff -c "Open(\"${sfd}\"); Generate(\"${output}\")"
-        done
-    - name: Generate Weight Fonts
-      run: fontforge -lang=py -script generate_font_weights.py
-    - name: List Fonts
-      run: ls *.ttf *.woff2
+        fontforge -lang=py -script generate_fonts.py "${formats[@]}"
     # - name: Generate Nerd Fonts
     #   run: |
     #     wget https://github.com/ryanoasis/nerd-fonts/raw/master/FontPatcher.zip
