@@ -28,7 +28,7 @@ jobs:
     - name: Generate Fonts
       run: ./generate_fonts.py
     - name: Generate Nerd Fonts
-      run: ./generate-nerd-fonts.py
+      run: ./generate_nerd_fonts.py
     - name: Generate Showcase
       run: |
         pip3 install Pillow

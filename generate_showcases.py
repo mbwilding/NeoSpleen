@@ -24,8 +24,8 @@ def create_image(text_color, background_color, file_path, font):
     draw.text((0, 0), TEXT, fill=text_color, font=font)
     image.save(file_path)
 
+os.makedirs("renders", exist_ok=True)
 ttf_files = glob.glob(os.path.join("fonts", "*.ttf"))
-
 for ttf_file in ttf_files:
     if "NerdFont" in os.path.basename(ttf_file):
         continue
