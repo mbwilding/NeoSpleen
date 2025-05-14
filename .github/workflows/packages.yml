@@ -108,8 +108,8 @@ jobs:
             b2sums="aoenuthaonetuhoeanstuh23423423"
 
             echo "Processing: $file_src"
-            sed -i "s|^[[:space:]]*\(pkgver[[:space:]]*=[[:space:]]*\).*|\1$VERSION|" "$file_src"
-            sed -i "s|^[[:space:]]*\(b2sums[[:space:]]*=[[:space:]]*\).*|\1$b2sums|" "$file_src"
+            sed -i "s|^\([[:space:]]*pkgver[[:space:]]*=[[:space:]]*\).*|\1$VERSION|" "$file_src"
+            sed -i "s|^\([[:space:]]*b2sums[[:space:]]*=[[:space:]]*\).*|\1$b2sums|" "$file_src"
             sed -i "s|\(releases/download/\)[^/]*|\1$VERSION|" "$file_src"
             cat $file_src
 
