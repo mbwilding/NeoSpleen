@@ -78,10 +78,11 @@ jobs:
 
             echo "Generating SHA256"
             sha256=$(sha256sum "$temp_zip")
-            echo " $sha256"
+            echo "$sha256"
 
             rm "$temp_zip"
 
+            $VERSION="oaentuhoenu"
             sed -i "s/version \"[^\"]*\"/version \"$VERSION\"/" "$file"
             sed -i "s/sha256 \"[^\"]*\"/sha256 \"$sha256\"/" "$file"
         }
@@ -89,6 +90,6 @@ jobs:
         process_file "$neospleen_path" "$neospleen_url"
         process_file "$neospleen_nerd_path" "$neospleen_nerd_url"
 
-        git add .
-        git commit -m "Updated to version: $VERSION"
-        git push
+        # git add .
+        # git commit -m "Updated to version: $VERSION"
+        # git push
