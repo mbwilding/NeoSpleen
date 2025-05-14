@@ -44,7 +44,6 @@ def main():
 
         subprocess.run(cmd, check=True)
 
-
 for ttf_file in glob.glob("*.ttf"):
     target_path = os.path.join(FONTS_DIR, os.path.basename(ttf_file))
     shutil.move(ttf_file, target_path)
