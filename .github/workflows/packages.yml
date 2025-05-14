@@ -35,18 +35,20 @@ jobs:
         printf "%s" "$PRIVATE_AUR" > "$ssh_path/aur"
         chmod 600 "$ssh_path/aur"
 
-    - name: Clone
+    # - name: Clone
+    #   env:
+    #     GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
+    #   run: |
+    #     git clone --depth 1 aur@aur.archlinux.org:ttf-neospleen.git
+    #     git clone --depth 1 aur@aur.archlinux.org:ttf-neospleen-nerd-font.git
+
+    - name: Homebrew
       env:
         GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
       run: |
-        git clone --depth 1 git@github.com:mbwilding/homebrew-neospleen.git
-        git clone --depth 1 aur@aur.archlinux.org:ttf-neospleen.git
-        git clone --depth 1 aur@aur.archlinux.org:ttf-neospleen-nerd-font.git
-
-    - name: Homebrew
-      run: |
         set -e
 
+        git clone --depth 1 git@github.com:mbwilding/homebrew-neospleen.git
         cd homebrew-neospleen
 
         # You might uncomment version check if needed
@@ -82,18 +84,13 @@ jobs:
 
             rm "$temp_zip"
 
-            VERSION="3.2.1"
-            sha256="nteoauh4nH34nth34435nth345ypinihuonituoheinh"
-
             sed -i "s|version \"[^\"]*\"|version \"$VERSION\"|" "$file"
             sed -i "s|sha256 \"[^\"]*\"|sha256 \"$sha256\"|" "$file"
-
-            cat "$file"
         }
 
         process_file "$neospleen_path" "$neospleen_url"
         process_file "$neospleen_nerd_path" "$neospleen_nerd_url"
 
-        # git add .
-        # git commit -m "Updated to version: $VERSION"
-        # git push
+        git add .
+        git commit -m "Updated to version: $VERSION"
+        git push
