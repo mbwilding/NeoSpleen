@@ -17,15 +17,22 @@ jobs:
         PRIVATE_PERSONAL: ${{ secrets.PRIVATE_PERSONAL }}
         PRIVATE_AUR: ${{ secrets.PRIVATE_AUR }}
       run: |
+        set -euo pipefail
+
         ssh_path="$HOME/.ssh"
-        mkdir -p "$ssh_path"
-        echo "$SSH_CONFIG" > "$ssh_path/config"
-        echo "$PRIVATE_PERSONAL" > "$ssh_path/personal"
-        echo "$PRIVATE_AUR" > "$ssh_path/aur"
-        chmod 700 "$ssh_path"
+        install -d -m 700 "$ssh_path"
+
+        # Write SSH configuration and keys securely using printf
+        printf "%s" "$SSH_CONFIG" > "$ssh_path/config"
         chmod 600 "$ssh_path/config"
+
+        printf "%s" "$PRIVATE_PERSONAL" > "$ssh_path/personal"
         chmod 600 "$ssh_path/personal"
+
+        printf "%s" "$PRIVATE_AUR" > "$ssh_path/aur"
         chmod 600 "$ssh_path/aur"
+
+        # Optionally display the SSH config for debugging
         cat "$ssh_path/config"
 
     - name: Clone
