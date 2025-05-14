@@ -51,7 +51,7 @@ jobs:
         cd fonts
 
         echo "Zipping Standard"
-        neospleen_zip="NeoSpleenNerdFont-TTF.zip"
+        neospleen_zip="NeoSpleen-TTF.zip"
         find . -type f -name "*.ttf" ! -name "*NerdFont*" | zip "$neospleen_zip" -@
         echo "NEOSPLEEN_ZIP=$(pwd)/$neospleen_zip" >> $GITHUB_ENV
 
