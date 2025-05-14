@@ -54,7 +54,7 @@ jobs:
         #   echo "Error: VERSION environment variable is not set."
         #   exit 1
         # fi
-        VERSION="2.3.4"
+        VERSION="1.0.57"
 
         neospleen_path="Casks/font-neospleen.rb"
         neospleen_url="https://github.com/mbwilding/NeoSpleen/releases/download/${version}/NeoSpleen-TTF.zip"
@@ -63,22 +63,26 @@ jobs:
         neospleen_nerd_url="https://github.com/mbwilding/NeoSpleen/releases/download/${version}/NeoSpleenNerdFont-TTF.zip"
 
         process_file () {
-            f=$1
+            file=$1
             url=$2
 
-            echo "Processing $f..."
+            echo "Processing $file..."
 
             echo "Downloading file from ${url}..."
 
             temp_zip="/tmp/artifact.zip"
-            curl -L -o "$temp_zip" "$url"
+            http_status=$(curl -L -s -w "%{http_code}" -o "$temp_zip" "$url")
+            if [ "$http_status" != "200" ]; then
+              echo "Error: Expected HTTP 200 but got $http_status"
+              exit 1
+            fi
 
             new_sha256=$(shasum -a 256 "$temp_zip" | awk '{print $1}')
             echo "New sha256: $new_sha256"
 
             rm "$temp_zip"
 
-            echo "Updated $f"
+            echo "Updated $file"
         }
 
         process_file "$neospleen_path" "$neospleen_url"
