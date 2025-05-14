@@ -35,6 +35,5 @@ jobs:
     - name: Clone
       run: |
         git clone --depth 1 git@github.com:mbwilding/homebrew-neospleen.git
-        ls homebrew-neospleen
-        # git clone --depth 1 aur@aur.archlinux.org:ttf-neospleen.git
-        # git clone --depth 1 aur@aur.archlinux.org:ttf-neospleen-nerd-font.git
+        git clone --depth 1 aur@aur.archlinux.org:ttf-neospleen.git
+        git clone --depth 1 aur@aur.archlinux.org:ttf-neospleen-nerd-font.git
