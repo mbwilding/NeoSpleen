@@ -32,12 +32,8 @@ jobs:
         printf "%s" "$PRIVATE_AUR" > "$ssh_path/aur"
         chmod 600 "$ssh_path/aur"
 
-        # TODO: Remove
-        echo "Config"
-        cat "$ssh_path/config"
-
     - name: Clone
       run: |
         git clone --depth 1 git@github.com:mbwilding/homebrew-neospleen.git
-        git clone --depth 1 aur@aur.archlinux.org:ttf-neospleen.git
-        git clone --depth 1 aur@aur.archlinux.org:ttf-neospleen-nerd-font.git
+        # git clone --depth 1 aur@aur.archlinux.org:ttf-neospleen.git
+        # git clone --depth 1 aur@aur.archlinux.org:ttf-neospleen-nerd-font.git
