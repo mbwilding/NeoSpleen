@@ -82,6 +82,9 @@ jobs:
 
             rm "$temp_zip"
 
+            VERSION="3.2.1"
+            sha256="nteoauh4nH34nth34435nth345ypinihuonituoheinh"
+
             sed -i "s|version \"[^\"]*\"|version \"$VERSION\"|" "$file"
             sed -i "s|sha256 \"[^\"]*\"|sha256 \"$sha256\"|" "$file"
 
