@@ -57,10 +57,10 @@ jobs:
         VERSION="1.0.57"
 
         neospleen_path="Casks/font-neospleen.rb"
-        neospleen_url="https://github.com/mbwilding/NeoSpleen/releases/download/${version}/NeoSpleen-TTF.zip"
+        neospleen_url="https://github.com/mbwilding/NeoSpleen/releases/download/${VERSION}/NeoSpleen-TTF.zip"
 
         neospleen_nerd_path="Casks/font-neospleen-nerd-font.rb"
-        neospleen_nerd_url="https://github.com/mbwilding/NeoSpleen/releases/download/${version}/NeoSpleenNerdFont-TTF.zip"
+        neospleen_nerd_url="https://github.com/mbwilding/NeoSpleen/releases/download/${VERSION}/NeoSpleenNerdFont-TTF.zip"
 
         process_file () {
             file=$1
