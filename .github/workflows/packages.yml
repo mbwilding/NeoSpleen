@@ -69,7 +69,6 @@ jobs:
             echo "Processing $file"
 
             echo "Downloading file from ${url}"
-
             temp_zip="/tmp/artifact.zip"
             http_status=$(curl -L -s -w "%{http_code}" -o "$temp_zip" "$url")
             if [ "$http_status" != "200" ]; then
@@ -77,13 +76,18 @@ jobs:
               exit 1
             fi
 
-            # new_sha256=$(shasum -a 256 "$temp_zip" | awk '{print $1}')
             new_sha256=$(sha256sum "$temp_zip")
             echo "New sha256: $new_sha256"
 
             rm "$temp_zip"
 
-            echo "Updated $file"
+
+            VERSION="NEWVERSIONHERE"
+            new_sha="NEWSHAHERE"
+            sed -i "s/version \"[^\"]*\"/version \"$VERSION\"/" "$file"
+            sed -i "s/sha256 \"[^\"]*\"/sha256 \"$new_sha\"/" "$file"
+
+            cat "$file"
         }
 
         process_file "$neospleen_path" "$neospleen_url"
