@@ -8,8 +8,11 @@ jobs:
   packages:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+    # - name: Checkout
+    #   uses: actions/checkout@v4
+
+    - name: Set Version
+      run: echo "VERSION=1.2.3" >> $GITHUB_ENV
 
     - name: Setup Git
       env:
@@ -35,41 +38,11 @@ jobs:
         printf "%s" "$PRIVATE_AUR" > "$ssh_path/aur"
         chmod 600 "$ssh_path/aur"
 
-    # - name: Clone
-    #   env:
-    #     GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
-    #   run: |
-    #     git clone --depth 1 aur@aur.archlinux.org:ttf-neospleen.git
-    #     git clone --depth 1 aur@aur.archlinux.org:ttf-neospleen-nerd-font.git
-
-    - name: Homebrew
-      env:
-        GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
+    - name: Download Artifacts
       run: |
-        set -e
-
-        git clone --depth 1 git@github.com:mbwilding/homebrew-neospleen.git
-        cd homebrew-neospleen
-
-        # You might uncomment version check if needed
-        # if [ -z "$VERSION" ]; then
-        #   echo "Error: VERSION environment variable is not set."
-        #   exit 1
-        # fi
-        VERSION="1.0.57"
-
-        neospleen_path="Casks/font-neospleen.rb"
-        neospleen_url="https://github.com/mbwilding/NeoSpleen/releases/download/${VERSION}/NeoSpleen-TTF.zip"
-
-        neospleen_nerd_path="Casks/font-neospleen-nerd-font.rb"
-        neospleen_nerd_url="https://github.com/mbwilding/NeoSpleen/releases/download/${VERSION}/NeoSpleenNerdFont-TTF.zip"
-
-        process_file () {
-            file=$1
-            url=$2
-
-            echo "Processing: $file"
-
+        download_file () {
+            file="$1"
+            url="$2"
             echo "Downloading: ${url}"
             temp_zip="/tmp/artifact.zip"
             http_status=$(curl -L -s -w "%{http_code}" -o "$temp_zip" "$url")
@@ -77,20 +50,80 @@ jobs:
               echo "Error: Expected HTTP 200 but got $http_status"
               exit 1
             fi
+        }
+
+        download_file "/tmp/neospleen.zip" "https://github.com/mbwilding/NeoSpleen/releases/download/${VERSION}/NeoSpleen-TTF.zip"
+        download_file "/tmp/neospleen-nerdfont.zip" "https://github.com/mbwilding/NeoSpleen/releases/download/${VERSION}/NeoSpleenNerdFont-TTF.zip"
+
+    - name: Homebrew
+      env:
+        GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
+      run: |
+        set -euo pipefail
+
+        git clone --depth 1 git@github.com:mbwilding/homebrew-neospleen.git
+        cd homebrew-neospleen
+
+        process_file () {
+            file=$1
+            zip=$2
+
+            echo "Processing: $file"
 
             echo "Generating SHA256"
-            sha256=$(sha256sum "$temp_zip" | awk '{print $1}')
+            sha256=$(sha256sum "$zip" | awk '{print $1}')
             echo "$sha256"
-
-            rm "$temp_zip"
 
             sed -i "s|version \"[^\"]*\"|version \"$VERSION\"|" "$file"
             sed -i "s|sha256 \"[^\"]*\"|sha256 \"$sha256\"|" "$file"
         }
 
-        process_file "$neospleen_path" "$neospleen_url"
-        process_file "$neospleen_nerd_path" "$neospleen_nerd_url"
+        process_file "Casks/font-neospleen.rb" "/tmp/neospleen.zip"
+        process_file "Casks/font-neospleen-nerd-font.rb" "/tmp/neospleen-nerdfont.zip"
 
         git add .
         git commit -m "Updated to version: $VERSION"
         git push
+
+    # - name: AUR
+    #   env:
+    #     GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
+    #     VERSION: "1.0.57"
+    #   run: |
+    #     set -euo pipefail
+    #
+    #     process_file () {
+    #         repo="$1"
+    #         git clone --depth 1 aur@aur.archlinux.org:${repo}.git
+    #         pushd "$repo"
+    #
+    #         # git add .
+    #         # git commit -m "Updated to version: $VERSION"
+    #         # git push
+    #
+    #         popd
+    #     }
+    #
+    #     process_file () {
+    #         file=$1
+    #         url=$2
+    #
+    #         echo "Processing: $file"
+    #
+    #         echo "Downloading: ${url}"
+    #         temp_zip="/tmp/artifact.zip"
+    #         http_status=$(curl -L -s -w "%{http_code}" -o "$temp_zip" "$url")
+    #         if [ "$http_status" != "200" ]; then
+    #           echo "Error: Expected HTTP 200 but got $http_status"
+    #           exit 1
+    #         fi
+    #
+    #         echo "Generating SHA256"
+    #         sha256=$(sha256sum "$temp_zip" | awk '{print $1}')
+    #         echo "$sha256"
+    #
+    #         rm "$temp_zip"
+    #
+    #         sed -i "s|version \"[^\"]*\"|version \"$VERSION\"|" "$file"
+    #         sed -i "s|sha256 \"[^\"]*\"|sha256 \"$sha256\"|" "$file"
+    #     }
