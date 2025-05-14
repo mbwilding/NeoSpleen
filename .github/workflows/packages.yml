@@ -79,7 +79,7 @@ jobs:
             fi
 
             echo "Generating SHA256"
-            sha256=$(sha256sum "$temp_zip")
+            sha256=$(sha256sum "$temp_zip" | awk '{print $1}')
             echo "$sha256"
 
             rm "$temp_zip"
