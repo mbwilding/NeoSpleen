@@ -113,7 +113,10 @@ jobs:
             sed -i "s|\(releases/download/\)[^/]*|\1$VERSION|" "$file_src"
             cat $file_src
 
-            # echo "Processing: $file_pkg"
+            echo "Processing: $file_pkg"
+            sed -i "s|^\(pkgver=\).*|\1$VERSION|" "$file_pkg"
+            sed -i "s|^\(b2sums=\).*|\1('$b2sums')|" "$file_pkg"
+            cat $file_pkg
 
             # git add .
             # git commit -m "Updated to version: $VERSION"
