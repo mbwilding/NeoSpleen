@@ -122,5 +122,5 @@ jobs:
             popd
         }
 
-        process_file "ttf-neospleen" "/tmp/neospleen.zip"
+        # process_file "ttf-neospleen" "/tmp/neospleen.zip"
         process_file "ttf-neospleen-nerd-font" "/tmp/neospleen-nerdfont.zip"
