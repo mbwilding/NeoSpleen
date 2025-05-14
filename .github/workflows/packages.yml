@@ -82,9 +82,8 @@ jobs:
 
             rm "$temp_zip"
 
-            VERSION="oaentuhoenu"
             sed -i "s/version \"[^\"]*\"/version \"$VERSION\"/" "$file"
-            sed -i "s/sha256 \"[^\"]*\"/sha256 \"$sha256\"/" "$file"
+            # sed -i "s/sha256 \"[^\"]*\"/sha256 \"$sha256\"/" "$file"
         }
 
         process_file "$neospleen_path" "$neospleen_url"
