@@ -17,6 +17,7 @@ jobs:
         PRIVATE_PERSONAL: ${{ secrets.PRIVATE_PERSONAL }}
         PRIVATE_AUR: ${{ secrets.PRIVATE_AUR }}
       run: |
+        echo "CONFIG: $SSH_CONFIG"
         set -euo pipefail
 
         ssh_path="$HOME/.ssh"
