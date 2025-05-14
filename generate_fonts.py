@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
 import os
+import shutil
 import sys
+
 import fontforge
 
 
@@ -25,6 +27,7 @@ def generate_font(font_type: str, font_weight: int, ext: str) -> None:
     font.correctDirection()
 
     for glyph in font.glyphs():
+        glyph.simplify()
         glyph.round()
 
     if ext.lower() in ("ttf", "ttc"):
@@ -44,6 +47,7 @@ def main():
     if not formats:
         formats = ["ttf", "woff2"]
 
+    shutil.rmtree("fonts", ignore_errors=True)
     os.makedirs("fonts", exist_ok=True)
 
     font_weights = [
