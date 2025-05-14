@@ -56,40 +56,27 @@ jobs:
         # fi
         VERSION="2.3.4"
 
-        for f in Casks/*.rb; do
-          echo "Processing $f..."
+        neospleen_path="Casks/font-neospleen.rb"
+        neospleen_url="https://github.com/mbwilding/NeoSpleen/releases/download/${version}/NeoSpleen-TTF.zip"
 
-          # Extract the URL pattern line from the file (assumes it starts with "url ")
-          url_pattern=$(grep -E '^[[:space:]]*url ' "$f" | head -n 1 | sed -E 's/.*url "(.*)".*/\1/')
+        neospleen_nerd_path="Casks/font-neospleen-nerd-font.rb"
+        neospleen_nerd_url="https://github.com/mbwilding/NeoSpleen/releases/download/${version}/NeoSpleenNerdFont-TTF.zip"
 
-          if [ -z "$url_pattern" ]; then
-            echo "No URL pattern found in $f, skipping..."
-            continue
-          fi
+        process_file () {
+            echo "Processing $f..."
 
-          # Replace "#{version}" with the new version (escape the curly braces in sed)
-          new_url=$(echo "$url_pattern" | sed "s/#\{version\}/$VERSION/g")
-          echo "Updated URL: $new_url"
+            echo "Downloading file from ${new_url}..."
 
-          echo "Downloading file from ${new_url}..."
+            temp_zip="/tmp/artifact.zip"
+            curl -L -o "$temp_zip" "$new_url"
 
-          temp_zip="/tmp/artifact.zip"
+            new_sha256=$(shasum -a 256 "$temp_zip" | awk '{print $1}')
+            echo "New sha256: $new_sha256"
 
-          # Download the file
-          curl -L -o "$temp_zip" "$new_url"
+            rm "$temp_zip"
 
-          # Calculate the sha256 checksum
-          new_sha256=$(shasum -a 256 "$temp_zip" | awk '{print $1}')
-          echo "New sha256: $new_sha256"
+            echo "Updated $f"
+        }
 
-          rm "$temp_zip"
-
-          sed -i \
-            -e "s/version \".*\"/version \"$VERSION\"/" \
-            -e "s#url \".*\"#url \"$new_url\"#" \
-            -e "s/sha256 \".*\"/sha256 \"$new_sha256\"/" "$f"
-
-          echo "Updated $f"
-
-          cat $f
-        done
+        process_file "$neospleen_path" "$neospleen_url"
+        process_file "$neospleen_nerd_path" "$neospleen_nerd_url"
