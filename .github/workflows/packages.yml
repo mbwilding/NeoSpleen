@@ -26,7 +26,7 @@ jobs:
         chmod 600 "$ssh_path/config"
         chmod 600 "$ssh_path/personal"
         chmod 600 "$ssh_path/aur"
-        ls "$ssh_path/config"
+        cat "$ssh_path/config"
 
     - name: Clone
       run: |
