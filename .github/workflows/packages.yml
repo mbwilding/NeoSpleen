@@ -1,0 +1,33 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Git
+      env:
+        SSH_CONFIG: ${{ env.SSH_CONFIG }}
+        PRIVATE_PERSONAL: ${{ secrets.PRIVATE_PERSONAL }}
+        PRIVATE_AUR: ${{ secrets.PRIVATE_AUR }}
+      run: |
+        ssh_path="$HOME/.ssh"
+        mkdir -p "$ssh_path"
+        echo "$SSH_CONFIG" > "$ssh_path/config"
+        echo "$PRIVATE_PERSONAL" > "$ssh_path/personal"
+        echo "$PRIVATE_AUR" > "$ssh_path/aur"
+        chmod 700 "$ssh_path"
+        chmod 600 "$ssh_path/config"
+        chmod 600 "$ssh_path/personal"
+        chmod 600 "$ssh_path/aur"
+
+    - name: Clone
+      run: |
+        git clone --depth 1 git@github.com:mbwilding/homebrew-neospleen.git
+        git clone --depth 1 aur@aur.archlinux.org:ttf-neospleen.git
+        git clone --depth 1 aur@aur.archlinux.org:ttf-neospleen-nerd-font.git
