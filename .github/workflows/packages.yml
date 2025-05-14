@@ -76,19 +76,18 @@ jobs:
               exit 1
             fi
 
-            new_sha256=$(sha256sum "$temp_zip")
+            sha256=$(sha256sum "$temp_zip")
             echo "New sha256: $new_sha256"
 
             rm "$temp_zip"
 
-
-            VERSION="NEWVERSIONHERE"
-            new_sha="NEWSHAHERE"
             sed -i "s/version \"[^\"]*\"/version \"$VERSION\"/" "$file"
-            sed -i "s/sha256 \"[^\"]*\"/sha256 \"$new_sha\"/" "$file"
-
-            cat "$file"
+            sed -i "s/sha256 \"[^\"]*\"/sha256 \"$sha256\"/" "$file"
         }
 
         process_file "$neospleen_path" "$neospleen_url"
         process_file "$neospleen_nerd_path" "$neospleen_nerd_url"
+
+        git add .
+        git commit -m "Updated to version: $VERSION"
+        git push
