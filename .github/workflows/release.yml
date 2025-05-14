@@ -60,17 +60,17 @@ jobs:
         find . -type f -name "*NerdFont*.ttf" | zip "$neospleen_nerd_zip" -@
         echo "NEOSPLEEN_NERD_ZIP=$(pwd)/$neospleen_nerd_zip" >> $GITHUB_ENV
 
-    # - name: GitHub Release
-    #   if: github.ref == 'refs/heads/main'
-    #   uses: softprops/action-gh-release@v2
-    #   with:
-    #     files: |
-    #       fonts/*.ttf
-    #       fonts/*.woff2
-    #       fonts/*.zip
-    #       renders/*.png
-    #     name: ${{ steps.version.outputs.version }}
-    #     tag_name: ${{ steps.version.outputs.version }}
+    - name: GitHub Release
+      if: github.ref == 'refs/heads/main'
+      uses: softprops/action-gh-release@v2
+      with:
+        files: |
+          fonts/*.ttf
+          fonts/*.woff2
+          fonts/*.zip
+          renders/*.png
+        name: ${{ steps.version.outputs.version }}
+        tag_name: ${{ steps.version.outputs.version }}
 
     - name: Setup Git
       env:
@@ -117,16 +117,15 @@ jobs:
             sed -i "s|version \"[^\"]*\"|version \"$VERSION\"|" "$file"
             sed -i "s|sha256 \"[^\"]*\"|sha256 \"$sha256\"|" "$file"
 
-            # TODO: REMOVE
             cat "$file"
         }
 
         process_file "Casks/font-neospleen.rb" "$NEOSPLEEN_ZIP"
         process_file "Casks/font-neospleen-nerd-font.rb" "$NEOSPLEEN_NERD_ZIP"
 
-        # git add .
-        # git commit -m "Updated to version: $VERSION"
-        # git push
+        git add .
+        git commit -m "Updated to version: $VERSION"
+        git push
 
     - name: AUR Release
       env:
@@ -153,19 +152,17 @@ jobs:
             sed -i "s|^\([[:space:]]*b2sums[[:space:]]*=[[:space:]]*\).*|\1$b2sums|" "$file_src"
             sed -i "s|\(releases/download/\)[^/]*|\1$VERSION|" "$file_src"
 
-            # TODO: Remove
             cat $file_src
 
             echo "Processing: $file_pkg"
             sed -i "s|^\(pkgver=\).*|\1$VERSION|" "$file_pkg"
             sed -i "s|^\(b2sums=\).*|\1('$b2sums')|" "$file_pkg"
 
-            # TODO: Remove
             cat $file_pkg
 
-            # git add .
-            # git commit -m "Updated to version: $VERSION"
-            # git push
+            git add .
+            git commit -m "Updated to version: $VERSION"
+            git push
 
             popd
         }
