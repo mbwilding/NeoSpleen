@@ -82,7 +82,7 @@ jobs:
 
             rm "$temp_zip"
 
-            $VERSION="oaentuhoenu"
+            VERSION="oaentuhoenu"
             sed -i "s/version \"[^\"]*\"/version \"$VERSION\"/" "$file"
             sed -i "s/sha256 \"[^\"]*\"/sha256 \"$sha256\"/" "$file"
         }
