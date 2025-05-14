@@ -13,6 +13,7 @@ jobs:
 
     - name: Setup Git
       env:
+        SSH_CONFIG: ${{ vars.SSH_CONFIG }}
         PRIVATE_PERSONAL: ${{ secrets.PRIVATE_PERSONAL }}
         PRIVATE_AUR: ${{ secrets.PRIVATE_AUR }}
       run: |
