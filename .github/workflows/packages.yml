@@ -1,7 +1,8 @@
-name: Release
+name: Package Managers
 
 on:
   workflow_dispatch:
+  push:
 
 jobs:
   release:
