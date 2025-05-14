@@ -12,8 +12,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+
     - name: Install Dependencies
       run: sudo apt-get install python3 fontforge python3-fontforge libwoff-dev
+
     - name: Increment Version
       id: version
       run: |
@@ -25,18 +27,25 @@ jobs:
         sed -i "s/Version +ACIA-[0-9]\+\.[0-9]\+\.[0-9]\+/Version +ACIA-${NEW_VERSION}/g" ${FONT_NAME}.sfd
         sed -i "s/sfntRevision: 0x000[0-9]*0000/sfntRevision: 0x000${MAJOR}0000/g" ${FONT_NAME}.sfd
         echo "version=${NEW_VERSION}" >> ${GITHUB_OUTPUT}
+        echo "VERSION=${NEW_VERSION}" >> $GITHUB_ENV
+
     - name: Generate Fonts
       run: ./generate_fonts.py
+
     - name: Generate Nerd Fonts
       run: ./generate_nerd_fonts.py
+
     - name: List Fonts
       run: ls fonts
+
     - name: Generate Showcases
       run: |
         pip3 install Pillow
         ./generate_showcases.py
+
     - name: List Showcases
       run: ls renders
+
     - name: Zip
       run: |
         cd fonts
@@ -44,7 +53,8 @@ jobs:
         find . -type f -name "*.ttf" ! -name "*NerdFont*" | zip "NeoSpleen-TTF.zip" -@
         echo "Zipping Nerd Font"
         find . -type f -name "*NerdFont*.ttf" | zip "NeoSpleenNerdFont-TTF.zip" -@
-    - name: Release
+
+    - name: GitHub Release
       if: github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@v2
       with:
@@ -55,3 +65,113 @@ jobs:
           renders/*.png
         name: ${{ steps.version.outputs.version }}
         tag_name: ${{ steps.version.outputs.version }}
+
+    - name: Setup Git
+      env:
+        SSH_CONFIG: ${{ vars.SSH_CONFIG }}
+        PRIVATE_PERSONAL: ${{ secrets.PRIVATE_PERSONAL }}
+        PRIVATE_AUR: ${{ secrets.PRIVATE_AUR }}
+      run: |
+        set -euo pipefail
+
+        git config --global user.name "Matthew Wilding"
+        git config --global user.email "mbwilding@gmail.com"
+
+        ssh_path="$HOME/.ssh"
+        install -d -m 700 "$ssh_path"
+
+        printf "%s" "$SSH_CONFIG" > "$ssh_path/config"
+        chmod 600 "$ssh_path/config"
+
+        printf "%s" "$PRIVATE_PERSONAL" > "$ssh_path/personal"
+        chmod 600 "$ssh_path/personal"
+
+        printf "%s" "$PRIVATE_AUR" > "$ssh_path/aur"
+        chmod 600 "$ssh_path/aur"
+
+    - name: Download Artifacts
+      run: |
+        download_file () {
+            file="$1"
+            url="$2"
+            echo "Downloading: ${url}"
+            http_status=$(curl -L -s -w "%{http_code}" -o "$file" "$url")
+            if [ "$http_status" != "200" ]; then
+              echo "Error: Expected HTTP 200 but got $http_status"
+              exit 1
+            fi
+        }
+
+        download_file "/tmp/neospleen.zip" "https://github.com/mbwilding/NeoSpleen/releases/download/${VERSION}/NeoSpleen-TTF.zip"
+        download_file "/tmp/neospleen-nerdfont.zip" "https://github.com/mbwilding/NeoSpleen/releases/download/${VERSION}/NeoSpleenNerdFont-TTF.zip"
+
+    - name: Homebrew Release
+      env:
+        GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
+      run: |
+        set -euo pipefail
+
+        git clone --depth 1 git@github.com:mbwilding/homebrew-neospleen.git
+        cd homebrew-neospleen
+
+        process_file () {
+            file=$1
+            zip=$2
+
+            echo "Processing: $file"
+
+            echo "Generating sha256"
+            sha256=$(sha256sum "$zip" | awk '{print $1}')
+            echo "$sha256"
+
+            sed -i "s|version \"[^\"]*\"|version \"$VERSION\"|" "$file"
+            sed -i "s|sha256 \"[^\"]*\"|sha256 \"$sha256\"|" "$file"
+        }
+
+        process_file "Casks/font-neospleen.rb" "/tmp/neospleen.zip"
+        process_file "Casks/font-neospleen-nerd-font.rb" "/tmp/neospleen-nerdfont.zip"
+
+        git add .
+        git commit -m "Updated to version: $VERSION"
+        git push
+
+    - name: AUR Release
+      env:
+        GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
+      run: |
+        set -euo pipefail
+
+        file_src=".SRCINFO"
+        file_pkg="PKGBUILD"
+
+        process_file () {
+            repo="$1"
+            zip="$2"
+
+            git clone --depth 1 aur@aur.archlinux.org:${repo}.git
+            pushd "$repo"
+
+            echo "Generating b2sums"
+            b2sums=$(b2sum "$zip" | awk '{print $1}')
+            echo "$b2sums"
+
+            echo "Processing: $file_src"
+            sed -i "s|^\([[:space:]]*pkgver[[:space:]]*=[[:space:]]*\).*|\1$VERSION|" "$file_src"
+            sed -i "s|^\([[:space:]]*b2sums[[:space:]]*=[[:space:]]*\).*|\1$b2sums|" "$file_src"
+            sed -i "s|\(releases/download/\)[^/]*|\1$VERSION|" "$file_src"
+            cat $file_src
+
+            echo "Processing: $file_pkg"
+            sed -i "s|^\(pkgver=\).*|\1$VERSION|" "$file_pkg"
+            sed -i "s|^\(b2sums=\).*|\1('$b2sums')|" "$file_pkg"
+            cat $file_pkg
+
+            git add .
+            git commit -m "Updated to version: $VERSION"
+            git push
+
+            popd
+        }
+
+        process_file "ttf-neospleen" "/tmp/neospleen.zip"
+        process_file "ttf-neospleen-nerd-font" "/tmp/neospleen-nerdfont.zip"
