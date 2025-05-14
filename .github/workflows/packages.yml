@@ -102,7 +102,7 @@ jobs:
             pushd "$repo"
 
             echo "Generating b2sums"
-            b2sums=$(b2sum "$temp_zip" | awk '{print $1}')
+            b2sums=$(b2sum "$zip" | awk '{print $1}')
             echo "$b2sums"
 
             echo "Processing: $file_src"
