@@ -49,22 +49,28 @@ jobs:
     - name: Zip
       run: |
         cd fonts
-        echo "Zipping Standard"
-        find . -type f -name "*.ttf" ! -name "*NerdFont*" | zip "NeoSpleen-TTF.zip" -@
-        echo "Zipping Nerd Font"
-        find . -type f -name "*NerdFont*.ttf" | zip "NeoSpleenNerdFont-TTF.zip" -@
 
-    - name: GitHub Release
-      if: github.ref == 'refs/heads/main'
-      uses: softprops/action-gh-release@v2
-      with:
-        files: |
-          fonts/*.ttf
-          fonts/*.woff2
-          fonts/*.zip
-          renders/*.png
-        name: ${{ steps.version.outputs.version }}
-        tag_name: ${{ steps.version.outputs.version }}
+        echo "Zipping Standard"
+        neospleen_zip="NeoSpleenNerdFont-TTF.zip"
+        find . -type f -name "*.ttf" ! -name "*NerdFont*" | zip "$neospleen_zip" -@
+        echo "NEOSPLEEN_ZIP=$(pwd)/$neospleen_zip" >> $GITHUB_ENV
+
+        echo "Zipping Nerd Font"
+        neospleen_nerd_zip="NeoSpleenNerdFont-TTF.zip"
+        find . -type f -name "*NerdFont*.ttf" | zip "$neospleen_nerd_zip" -@
+        echo "NEOSPLEEN_NERD_ZIP=$(pwd)/$neospleen_nerd_zip" >> $GITHUB_ENV
+
+    # - name: GitHub Release
+    #   if: github.ref == 'refs/heads/main'
+    #   uses: softprops/action-gh-release@v2
+    #   with:
+    #     files: |
+    #       fonts/*.ttf
+    #       fonts/*.woff2
+    #       fonts/*.zip
+    #       renders/*.png
+    #     name: ${{ steps.version.outputs.version }}
+    #     tag_name: ${{ steps.version.outputs.version }}
 
     - name: Setup Git
       env:
@@ -89,22 +95,6 @@ jobs:
         printf "%s" "$PRIVATE_AUR" > "$ssh_path/aur"
         chmod 600 "$ssh_path/aur"
 
-    - name: Download Artifacts
-      run: |
-        download_file () {
-            file="$1"
-            url="$2"
-            echo "Downloading: ${url}"
-            http_status=$(curl -L -s -w "%{http_code}" -o "$file" "$url")
-            if [ "$http_status" != "200" ]; then
-              echo "Error: Expected HTTP 200 but got $http_status"
-              exit 1
-            fi
-        }
-
-        download_file "/tmp/neospleen.zip" "https://github.com/mbwilding/NeoSpleen/releases/download/${VERSION}/NeoSpleen-TTF.zip"
-        download_file "/tmp/neospleen-nerdfont.zip" "https://github.com/mbwilding/NeoSpleen/releases/download/${VERSION}/NeoSpleenNerdFont-TTF.zip"
-
     - name: Homebrew Release
       env:
         GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
@@ -126,14 +116,17 @@ jobs:
 
             sed -i "s|version \"[^\"]*\"|version \"$VERSION\"|" "$file"
             sed -i "s|sha256 \"[^\"]*\"|sha256 \"$sha256\"|" "$file"
+
+            # TODO: REMOVE
+            cat "$file"
         }
 
-        process_file "Casks/font-neospleen.rb" "/tmp/neospleen.zip"
-        process_file "Casks/font-neospleen-nerd-font.rb" "/tmp/neospleen-nerdfont.zip"
+        process_file "Casks/font-neospleen.rb" "$NEOSPLEEN_ZIP"
+        process_file "Casks/font-neospleen-nerd-font.rb" "$NEOSPLEEN_NERD_ZIP"
 
-        git add .
-        git commit -m "Updated to version: $VERSION"
-        git push
+        # git add .
+        # git commit -m "Updated to version: $VERSION"
+        # git push
 
     - name: AUR Release
       env:
@@ -159,19 +152,23 @@ jobs:
             sed -i "s|^\([[:space:]]*pkgver[[:space:]]*=[[:space:]]*\).*|\1$VERSION|" "$file_src"
             sed -i "s|^\([[:space:]]*b2sums[[:space:]]*=[[:space:]]*\).*|\1$b2sums|" "$file_src"
             sed -i "s|\(releases/download/\)[^/]*|\1$VERSION|" "$file_src"
+
+            # TODO: Remove
             cat $file_src
 
             echo "Processing: $file_pkg"
             sed -i "s|^\(pkgver=\).*|\1$VERSION|" "$file_pkg"
             sed -i "s|^\(b2sums=\).*|\1('$b2sums')|" "$file_pkg"
+
+            # TODO: Remove
             cat $file_pkg
 
-            git add .
-            git commit -m "Updated to version: $VERSION"
-            git push
+            # git add .
+            # git commit -m "Updated to version: $VERSION"
+            # git push
 
             popd
         }
 
-        process_file "ttf-neospleen" "/tmp/neospleen.zip"
-        process_file "ttf-neospleen-nerd-font" "/tmp/neospleen-nerdfont.zip"
+        process_file "ttf-neospleen" "$NEOSPLEEN_ZIP"
+        process_file "ttf-neospleen-nerd-font" "$NEOSPLEEN_NERD_ZIP"
