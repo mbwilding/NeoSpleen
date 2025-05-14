@@ -63,12 +63,15 @@ jobs:
         neospleen_nerd_url="https://github.com/mbwilding/NeoSpleen/releases/download/${version}/NeoSpleenNerdFont-TTF.zip"
 
         process_file () {
+            f=$1
+            url=$2
+
             echo "Processing $f..."
 
-            echo "Downloading file from ${new_url}..."
+            echo "Downloading file from ${url}..."
 
             temp_zip="/tmp/artifact.zip"
-            curl -L -o "$temp_zip" "$new_url"
+            curl -L -o "$temp_zip" "$url"
 
             new_sha256=$(shasum -a 256 "$temp_zip" | awk '{print $1}')
             echo "New sha256: $new_sha256"
