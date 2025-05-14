@@ -78,7 +78,7 @@ jobs:
 
             echo "Generating SHA256"
             sha256=$(sha256sum "$temp_zip")
-            echo "$sha256"
+            echo " $sha256"
 
             rm "$temp_zip"
 
