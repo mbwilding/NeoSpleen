@@ -5,7 +5,7 @@ on:
   push:
 
 jobs:
-  release:
+  packages:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -26,9 +26,10 @@ jobs:
         chmod 600 "$ssh_path/config"
         chmod 600 "$ssh_path/personal"
         chmod 600 "$ssh_path/aur"
+        ls "$ssh_path/config"
 
     - name: Clone
       run: |
-        git clone --depth 1 git@github.com:mbwilding/homebrew-neospleen.git
         git clone --depth 1 aur@aur.archlinux.org:ttf-neospleen.git
         git clone --depth 1 aur@aur.archlinux.org:ttf-neospleen-nerd-font.git
+        git clone --depth 1 git@github.com:mbwilding/homebrew-neospleen.git
