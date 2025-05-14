@@ -66,9 +66,9 @@ jobs:
             file=$1
             url=$2
 
-            echo "Processing $file..."
+            echo "Processing $file"
 
-            echo "Downloading file from ${url}..."
+            echo "Downloading file from ${url}"
 
             temp_zip="/tmp/artifact.zip"
             http_status=$(curl -L -s -w "%{http_code}" -o "$temp_zip" "$url")
@@ -77,7 +77,8 @@ jobs:
               exit 1
             fi
 
-            new_sha256=$(shasum -a 256 "$temp_zip" | awk '{print $1}')
+            # new_sha256=$(shasum -a 256 "$temp_zip" | awk '{print $1}')
+            new_sha256=$(sha256sum "$temp_zip")
             echo "New sha256: $new_sha256"
 
             rm "$temp_zip"
