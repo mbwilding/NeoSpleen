@@ -16,6 +16,7 @@ jobs:
         SSH_CONFIG: ${{ vars.SSH_CONFIG }}
         PRIVATE_PERSONAL: ${{ secrets.PRIVATE_PERSONAL }}
         PRIVATE_AUR: ${{ secrets.PRIVATE_AUR }}
+        GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
       run: |
         set -euo pipefail
 
