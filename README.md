@@ -10,13 +10,13 @@ A modern monospaced font inspired by [Spleen](https://github.com/fcambus/spleen)
 
 ![Regular Black-on-White](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Regular-BoW.png)
 
-### Medium
+### Medium (WIP dynamically synthesized from Regular, hence artifacts/curves)
 
 ![Medium White-on-Black](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Medium-WoB.png)
 
 ![Medium Black-on-White](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Medium-BoW.png)
 
-### Bold
+### Bold (WIP dynamically synthesized from Regular, hence artifacts/curves)
 
 ![Bold White-on-Black](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Bold-WoB.png)
 
