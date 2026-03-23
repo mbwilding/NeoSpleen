@@ -31,7 +31,7 @@ def create_svg(text_color, file_path, ttf_path, font_family):
 
     text_elements = []
     for i, line in enumerate(TEXT_LINES):
-        y = int(LINE_HEIGHT + (i + 1) * LINE_HEIGHT)
+        y = int(50 + (i + 1) * LINE_HEIGHT)
         # Escape XML special characters
         safe_line = (
             line.replace("&", "&amp;")
