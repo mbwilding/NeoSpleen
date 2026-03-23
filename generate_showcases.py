@@ -26,7 +26,7 @@ def create_svg(text_color, file_path, ttf_path, font_family):
         font_b64 = base64.b64encode(f.read()).decode("ascii")
 
     num_lines = len(TEXT_LINES)
-    width = 3840
+    width = 2000
     height = int(2 + num_lines * LINE_HEIGHT)
 
     text_elements = []
