@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
-     width="3840" height="1480"
-     viewBox="0 0 3840 1480">
+     width="3840" height="1082"
+     viewBox="0 0 3840 1082">
   <defs>
     <style>
       @font-face {
@@ -10,15 +10,15 @@
       }
       text {
         font-family: 'NeoSpleen-Bold', monospace;
-        font-size: 200px;
+        font-size: 150px;
         white-space: pre;
       }
     </style>
   </defs>
-  <text x="20" y="260" fill="white">ABCDEFGHIJKLMNOPQRSTUVWXYZ</text>
-  <text x="20" y="500" fill="white">abcdefghijklmnopqrstuvwxyz</text>
-  <text x="20" y="740" fill="white">0123456789</text>
-  <text x="20" y="980" fill="white">_-~=+*&amp;#$@%^</text>
-  <text x="20" y="1220" fill="white">/&lt;[{(|)}]&gt;\\</text>
-  <text x="20" y="1460" fill="white">`'&quot;.,:;!?</text>
+  <text x="0" y="180" fill="white">ABCDEFGHIJKLMNOPQRSTUVWXYZ</text>
+  <text x="0" y="360" fill="white">abcdefghijklmnopqrstuvwxyz</text>
+  <text x="0" y="540" fill="white">0123456789</text>
+  <text x="0" y="720" fill="white">_-~=+*&amp;#$@%^</text>
+  <text x="0" y="900" fill="white">/&lt;[{(|)}]&gt;\\</text>
+  <text x="0" y="1080" fill="white">`'&quot;.,:;!?</text>
 </svg>

@@ -7,7 +7,6 @@ import shutil
 
 FONT_SIZE = 150
 LINE_HEIGHT = FONT_SIZE * 1.2
-PADDING = 20
 TEXT_LINES = [
     "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
     "abcdefghijklmnopqrstuvwxyz",
@@ -28,11 +27,11 @@ def create_svg(text_color, file_path, ttf_path, font_family):
 
     num_lines = len(TEXT_LINES)
     width = 3840
-    height = int(PADDING * 2 + num_lines * LINE_HEIGHT)
+    height = int(2 + num_lines * LINE_HEIGHT)
 
     text_elements = []
     for i, line in enumerate(TEXT_LINES):
-        y = int(PADDING + (i + 1) * LINE_HEIGHT)
+        y = int((i + 1) * LINE_HEIGHT)
         # Escape XML special characters
         safe_line = (
             line.replace("&", "&amp;")
@@ -41,7 +40,7 @@ def create_svg(text_color, file_path, ttf_path, font_family):
             .replace('"', "&quot;")
         )
         text_elements.append(
-            f'  <text x="{PADDING}" y="{y}" fill="{text_color}">{safe_line}</text>'
+            f'  <text x="0" y="{y}" fill="{text_color}">{safe_line}</text>'
         )
 
     text_block = "\n".join(text_elements)
