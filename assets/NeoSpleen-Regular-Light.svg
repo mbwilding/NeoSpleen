@@ -15,10 +15,10 @@
       }
     </style>
   </defs>
-  <text x="0" y="190" fill="black">ABCDEFGHIJKLMNOPQRSTUVWXYZ</text>
-  <text x="0" y="370" fill="black">abcdefghijklmnopqrstuvwxyz</text>
-  <text x="0" y="550" fill="black">0123456789</text>
-  <text x="0" y="730" fill="black">_-~=+*&amp;#$@%^</text>
-  <text x="0" y="910" fill="black">/&lt;[{(|)}]&gt;\</text>
-  <text x="0" y="1090" fill="black">`'&quot;.,:;!?</text>
+  <text x="0" y="185" fill="black">ABCDEFGHIJKLMNOPQRSTUVWXYZ</text>
+  <text x="0" y="365" fill="black">abcdefghijklmnopqrstuvwxyz</text>
+  <text x="0" y="545" fill="black">0123456789</text>
+  <text x="0" y="725" fill="black">_-~=+*&amp;#$@%^</text>
+  <text x="0" y="905" fill="black">/&lt;[{(|)}]&gt;\</text>
+  <text x="0" y="1085" fill="black">`'&quot;.,:;!?</text>
 </svg>
