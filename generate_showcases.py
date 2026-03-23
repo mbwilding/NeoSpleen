@@ -6,7 +6,7 @@ import os
 import shutil
 
 FONT_SIZE = 150
-TOP_PAD = -20
+TOP_PAD = -30
 LINE_HEIGHT = FONT_SIZE * 1.2
 TEXT_LINES = [
     "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
