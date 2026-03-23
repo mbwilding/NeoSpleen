@@ -5,6 +5,7 @@ pkgs.mkShell {
     pkgs.fontforge
     (pkgs.python3.withPackages (ps: [
       ps.fontforge
+      ps.pillow
     ]))
   ];
 }

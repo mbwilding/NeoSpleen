@@ -1,30 +1,74 @@
 #!/usr/bin/env python3
 
+import base64
 import glob
 import os
 import shutil
 
-from PIL import Image, ImageDraw, ImageFont
-
-WIDTH, HEIGHT = 3840, 1290
 FONT_SIZE = 294
-TEXT = """ABCDEFGHIJKLMNOPQRSTUVWXYZ
-abcdefghijklmnopqrstuvwxyz
-0123456789
-_-~=+*&#$@%^
-/<[{(|)}]>\
-`'".,:;!?"""
+LINE_HEIGHT = FONT_SIZE * 1.2
+PADDING = 20
+TEXT_LINES = [
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "abcdefghijklmnopqrstuvwxyz",
+    "0123456789",
+    "_-~=+*&#$@%^",
+    r"/<[{(|)}]>\\",
+    "`'\".,:;!?",
+]
 
 
-def create_image(text_color, background_color, file_path, font):
+def create_svg(text_color, file_path, ttf_path, font_family):
     output_dir = os.path.dirname(file_path)
     if output_dir and not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
-    image = Image.new("RGB", (WIDTH, HEIGHT), background_color)
-    draw = ImageDraw.Draw(image)
-    draw.text((0, 0), TEXT, fill=text_color, font=font)
-    image.save(file_path)
+    with open(ttf_path, "rb") as f:
+        font_b64 = base64.b64encode(f.read()).decode("ascii")
+
+    num_lines = len(TEXT_LINES)
+    width = 3840
+    height = int(PADDING * 2 + num_lines * LINE_HEIGHT)
+
+    text_elements = []
+    for i, line in enumerate(TEXT_LINES):
+        y = int(PADDING + (i + 1) * LINE_HEIGHT)
+        # Escape XML special characters
+        safe_line = (
+            line.replace("&", "&amp;")
+            .replace("<", "&lt;")
+            .replace(">", "&gt;")
+            .replace('"', "&quot;")
+        )
+        text_elements.append(
+            f'  <text x="{PADDING}" y="{y}" fill="{text_color}">{safe_line}</text>'
+        )
+
+    text_block = "\n".join(text_elements)
+
+    svg = f"""<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="{width}" height="{height}"
+     viewBox="0 0 {width} {height}">
+  <defs>
+    <style>
+      @font-face {{
+        font-family: '{font_family}';
+        src: url('data:font/truetype;base64,{font_b64}') format('truetype');
+      }}
+      text {{
+        font-family: '{font_family}', monospace;
+        font-size: {FONT_SIZE}px;
+        white-space: pre;
+      }}
+    </style>
+  </defs>
+{text_block}
+</svg>
+"""
+
+    with open(file_path, "w", encoding="utf-8") as f:
+        f.write(svg)
 
 
 def main():
@@ -34,13 +78,14 @@ def main():
     for ttf_file in ttf_files:
         if "NerdFont" in os.path.basename(ttf_file):
             continue
-        font_ttf = ImageFont.truetype(ttf_file, FONT_SIZE)
         base_name = os.path.splitext(os.path.basename(ttf_file))[0]
-        wob_path = os.path.join("renders", f"{base_name}-WoB.png")
-        bow_path = os.path.join("renders", f"{base_name}-BoW.png")
+        # Use a unique family name per file to avoid browser caching collisions
+        font_family = base_name
+        dark_path = os.path.join("renders", f"{base_name}-Dark.svg")
+        light_path = os.path.join("renders", f"{base_name}-Light.svg")
 
-        create_image("white", "black", wob_path, font_ttf)
-        create_image("black", "white", bow_path, font_ttf)
+        create_svg("white", dark_path, ttf_file, font_family)
+        create_svg("black", light_path, ttf_file, font_family)
 
 
 if __name__ == "__main__":
