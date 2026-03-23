@@ -14,7 +14,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Install Dependencies
-      run: sudo apt-get install python3 fontforge python3-fontforge libwoff-dev
+      run: sudo apt-get install -y python3 fontforge python3-fontforge libwoff-dev
 
     - name: Increment Version
       id: version
@@ -39,9 +39,7 @@ jobs:
       run: ls fonts
 
     - name: Generate Showcases
-      run: |
-        pip3 install Pillow
-        ./generate_showcases.py
+      run: ./generate_showcases.py
 
     - name: List Showcases
       run: ls renders
@@ -68,7 +66,7 @@ jobs:
           fonts/*.ttf
           fonts/*.woff2
           fonts/*.zip
-          renders/*.png
+          renders/*.svg
         name: ${{ steps.version.outputs.version }}
         tag_name: ${{ steps.version.outputs.version }}
 

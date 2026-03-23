@@ -4,7 +4,7 @@ FullName: NeoSpleen
 FamilyName: NeoSpleen
 Weight: Book
 Copyright: "Copyright (c) 2025, Matthew Wilding"
-Version: "1.0.0"
+Version: "1.1.0"
 ItalicAngle: 0
 UnderlinePosition: -100
 UnderlineWidth: 40
@@ -75,7 +75,7 @@ ShortTable: maxp 16
   3
   2
 EndShort
-LangName: 1033 "" "" "Regular" "FontForge 2.0 : NeoSpleen : 12-5-2025" "" "Version +ACIA-1.0.0+ACIA"
+LangName: 1033 "" "" "Regular" "FontForge 2.0 : NeoSpleen : 12-5-2025" "" "Version +ACIA-1.1.0+ACIA"
 GaspTable: 1 65535 2 0
 Encoding: UnicodeBmp
 UnicodeInterp: none

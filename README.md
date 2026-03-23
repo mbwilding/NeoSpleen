@@ -6,21 +6,24 @@ A modern monospaced font inspired by [Spleen](https://github.com/fcambus/spleen)
 
 ### Regular
 
-![Regular White-on-Black](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Regular-WoB.png)
-
-![Regular Black-on-White](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Regular-BoW.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Regular-Dark.svg">
+  <img alt="Regular" src="https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Regular-Light.svg">
+</picture>
 
 ### Medium (WIP dynamically synthesized from Regular, hence artifacts/curves)
 
-![Medium White-on-Black](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Medium-WoB.png)
-
-![Medium Black-on-White](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Medium-BoW.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Medium-Dark.svg">
+  <img alt="Medium" src="https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Medium-Light.svg">
+</picture>
 
 ### Bold (WIP dynamically synthesized from Regular, hence artifacts/curves)
 
-![Bold White-on-Black](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Bold-WoB.png)
-
-![Bold Black-on-White](https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Bold-BoW.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Bold-Dark.svg">
+  <img alt="Bold" src="https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Bold-Light.svg">
+</picture>
 
 ## Install
 
