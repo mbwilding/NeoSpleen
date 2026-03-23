@@ -6,6 +6,7 @@ import os
 import shutil
 
 FONT_SIZE = 150
+TOP_PAD = 10
 LINE_HEIGHT = FONT_SIZE * 1.2
 TEXT_LINES = [
     "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
@@ -31,7 +32,7 @@ def create_svg(text_color, file_path, ttf_path, font_family):
 
     text_elements = []
     for i, line in enumerate(TEXT_LINES):
-        y = int(50 + (i + 1) * LINE_HEIGHT)
+        y = int(TOP_PAD + (i + 1) * LINE_HEIGHT)
         # Escape XML special characters
         safe_line = (
             line.replace("&", "&amp;")
