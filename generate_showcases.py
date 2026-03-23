@@ -5,7 +5,7 @@ import glob
 import os
 import shutil
 
-FONT_SIZE = 294
+FONT_SIZE = 200
 LINE_HEIGHT = FONT_SIZE * 1.2
 PADDING = 20
 TEXT_LINES = [
