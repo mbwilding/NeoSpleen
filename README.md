@@ -4,25 +4,30 @@ A modern monospaced font inspired by [Spleen](https://github.com/fcambus/spleen)
 
 ## Showcase
 
+> Medium and Bold are synthetically generated
+
 ### Regular
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Regular-Dark.svg">
-  <img alt="Regular" src="https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Regular-Light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Regular-Dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Regular-Light.svg" />
+  <img alt="Regular" src="https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Regular-Dark.svg" />
 </picture>
 
-### Medium (WIP dynamically synthesized from Regular, hence artifacts/curves)
+### Medium
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Medium-Dark.svg">
-  <img alt="Medium" src="https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Medium-Light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Medium-Dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Medium-Light.svg" />
+  <img alt="Medium" src="https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Medium-Dark.svg" />
 </picture>
 
-### Bold (WIP dynamically synthesized from Regular, hence artifacts/curves)
+### Bold
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Bold-Dark.svg">
-  <img alt="Bold" src="https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Bold-Light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Bold-Dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Bold-Light.svg" />
+  <img alt="Bold" src="https://github.com/mbwilding/NeoSpleen/releases/latest/download/NeoSpleen-Bold-Dark.svg" />
 </picture>
 
 ## Install
