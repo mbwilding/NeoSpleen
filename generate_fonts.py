@@ -3,8 +3,22 @@
 import os
 import shutil
 import sys
+import contextlib
 
 import fontforge
+
+
+@contextlib.contextmanager
+def suppress_ff_stderr():
+    devnull = os.open(os.devnull, os.O_WRONLY)
+    old_stderr = os.dup(2)
+    os.dup2(devnull, 2)
+    os.close(devnull)
+    try:
+        yield
+    finally:
+        os.dup2(old_stderr, 2)
+        os.close(old_stderr)
 
 
 def generate_font(font_type: str, font_weight: int, ext: str) -> None:
@@ -20,21 +34,22 @@ def generate_font(font_type: str, font_weight: int, ext: str) -> None:
     output_file = f"fonts/NeoSpleen-{font_type}.{ext}"
 
     font_scale = 1 + (font_weight - 400) * (31 / 300)
-    if font_scale != 1.0:
-        font.changeWeight(font_scale, "LCG", 0, 0, "squish")
+    with suppress_ff_stderr():
+        if font_scale != 1.0:
+            font.changeWeight(font_scale, "LCG", 0, 0, "squish")
 
-    font.removeOverlap()
-    font.correctDirection()
+        font.removeOverlap()
+        font.correctDirection()
 
-    for glyph in font.glyphs():
-        glyph.simplify()
-        glyph.round()
+        for glyph in font.glyphs():
+            glyph.simplify()
+            glyph.round()
 
-    if ext.lower() in ("ttf", "ttc"):
-        font.autoHint()
-        font.autoInstr()
+        if ext.lower() in ("ttf", "ttc"):
+            font.autoHint()
+            font.autoInstr()
 
-    font.generate(output_file)
+        font.generate(output_file)
     print(f"Generated {output_file}:")
     print("  Type:", font_type)
     print("  Weight:", font_weight)
