@@ -42,7 +42,7 @@ jobs:
       run: ./generate_showcases.py
 
     - name: List Showcases
-      run: ls renders
+      run: ls assets
 
     - name: Zip
       run: |
@@ -66,7 +66,6 @@ jobs:
           fonts/*.ttf
           fonts/*.woff2
           fonts/*.zip
-          renders/*.svg
         name: ${{ steps.version.outputs.version }}
         tag_name: ${{ steps.version.outputs.version }}
 
@@ -92,6 +91,13 @@ jobs:
 
         printf "%s" "$PRIVATE_AUR" > "$ssh_path/aur"
         chmod 600 "$ssh_path/aur"
+
+    - name: Commit Showcases
+      run: |
+        set -euo pipefail
+        git add assets/*.svg
+        git commit -m "Updated showcases to version: $VERSION"
+        git push
 
     - name: Homebrew Release
       env:

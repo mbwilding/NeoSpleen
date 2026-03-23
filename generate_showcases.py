@@ -72,8 +72,8 @@ def create_svg(text_color, file_path, ttf_path, font_family):
 
 
 def main():
-    shutil.rmtree("renders", ignore_errors=True)
-    os.makedirs("renders", exist_ok=True)
+    shutil.rmtree("assets", ignore_errors=True)
+    os.makedirs("assets", exist_ok=True)
     ttf_files = glob.glob(os.path.join("fonts", "*.ttf"))
     for ttf_file in ttf_files:
         if "NerdFont" in os.path.basename(ttf_file):
@@ -81,8 +81,8 @@ def main():
         base_name = os.path.splitext(os.path.basename(ttf_file))[0]
         # Use a unique family name per file to avoid browser caching collisions
         font_family = base_name
-        dark_path = os.path.join("renders", f"{base_name}-Dark.svg")
-        light_path = os.path.join("renders", f"{base_name}-Light.svg")
+        dark_path = os.path.join("assets", f"{base_name}-Dark.svg")
+        light_path = os.path.join("assets", f"{base_name}-Light.svg")
 
         create_svg("white", dark_path, ttf_file, font_family)
         create_svg("black", light_path, ttf_file, font_family)
