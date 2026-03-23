@@ -16,12 +16,13 @@ FONTS_DIR = "./fonts"
 def main():
     if not os.path.isdir(PATCHER_DIR):
         urllib.request.urlretrieve(ZIP_URL, ZIP_FILE)
-        with zipfile.ZipFile(ZIP_FILE, 'r') as zip_ref:
+        with zipfile.ZipFile(ZIP_FILE, "r") as zip_ref:
             zip_ref.extractall(PATCHER_DIR)
         os.remove(ZIP_FILE)
 
     font_files = [
-        f for f in glob.glob(os.path.join(FONTS_DIR, "*.ttf"))
+        f
+        for f in glob.glob(os.path.join(FONTS_DIR, "*.ttf"))
         if "NerdFont" not in os.path.basename(f)
     ]
     if not font_files:
@@ -39,7 +40,7 @@ def main():
             "--complete",
             "--boxdrawing",
             "--no-progressbars",
-            "--quiet"
+            "--quiet",
         ]
 
         subprocess.run(cmd, check=True, stderr=subprocess.DEVNULL)

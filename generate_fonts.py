@@ -4,7 +4,6 @@ import os
 import shutil
 import sys
 import contextlib
-
 import fontforge
 
 
