@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
-     width="2600" height="1082"
-     viewBox="0 0 2600 1082">
+     width="2500" height="1082"
+     viewBox="0 0 2500 1082">
   <defs>
     <style>
       @font-face {
@@ -15,10 +15,10 @@
       }
     </style>
   </defs>
-  <text x="0" y="0" fill="white">ABCDEFGHIJKLMNOPQRSTUVWXYZ</text>
-  <text x="0" y="180" fill="white">abcdefghijklmnopqrstuvwxyz</text>
-  <text x="0" y="360" fill="white">0123456789</text>
-  <text x="0" y="540" fill="white">_-~=+*&amp;#$@%^</text>
-  <text x="0" y="720" fill="white">/&lt;[{(|)}]&gt;\</text>
-  <text x="0" y="900" fill="white">`'&quot;.,:;!?</text>
+  <text x="0" y="280" fill="white">ABCDEFGHIJKLMNOPQRSTUVWXYZ</text>
+  <text x="0" y="460" fill="white">abcdefghijklmnopqrstuvwxyz</text>
+  <text x="0" y="640" fill="white">0123456789</text>
+  <text x="0" y="820" fill="white">_-~=+*&amp;#$@%^</text>
+  <text x="0" y="1000" fill="white">/&lt;[{(|)}]&gt;\</text>
+  <text x="0" y="1180" fill="white">`'&quot;.,:;!?</text>
 </svg>
