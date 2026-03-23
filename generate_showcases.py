@@ -26,12 +26,12 @@ def create_svg(text_color, file_path, ttf_path, font_family):
         font_b64 = base64.b64encode(f.read()).decode("ascii")
 
     num_lines = len(TEXT_LINES)
-    width = 3000
+    width = 2600
     height = int(2 + num_lines * LINE_HEIGHT)
 
     text_elements = []
     for i, line in enumerate(TEXT_LINES):
-        y = int((i + 1) * LINE_HEIGHT)
+        y = int(i * LINE_HEIGHT)
         # Escape XML special characters
         safe_line = (
             line.replace("&", "&amp;")
