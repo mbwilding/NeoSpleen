@@ -1,6 +1,7 @@
 NerdFontPatcher/
 fonts/
 renders/
+.direnv/
 .mypy_cache/
 FontPatcher.zip
 **.ttf
