@@ -51,3 +51,11 @@ brew install --cask font-neospleen-nerd-font
 paru -S ttf-neospleen
 paru -S ttf-neospleen-nerd-font
 ```
+
+## Nix
+
+```bash
+nix run github:mbwilding/NeoSpleen#default
+```
+
+Add the flake as an input (`inputs.nixpkgs.follows = "nixpkgs"`) and use `inputs.neospleen.packages.${pkgs.stdenv.hostPlatform.system}.default`. An overlay is exported as `overlays.default`. Nothing needs editing on release, updating the flake input picks up the latest.
